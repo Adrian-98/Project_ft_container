@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:34:41 by adrian            #+#    #+#             */
-/*   Updated: 2021/04/29 11:42:46 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/04/29 12:13:38 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,45 @@ class List
 
 				size_type	n_nodes;
 			
-		
-}
+		public:
+				List(): head(NULL), tail(NULL), n_nodes(0){}
+				List(const List<T> &copy): head(copy.head), tail(copy.tail), n_nodes(copy.n_nodes){}
+				List  &operator=(List const &copy)
+				{
+					this->head = copy.head;
+					this->tail = copy.tail;
+					this->n_nodes = copy.n_nodes;
+					return (*this);
+				}		
+				~List(){
+					clear();
+				}
+// Returns the size of the list.
+				int size() const { return n_nodes; }
+// Returns true if the list is empty.
+				bool empty() const { return !head; }
+//Returns a reference to the actual front data item in the list.			
+				reference front()
+				{
+					if (!head)
+						throw std::runtime_error("front() called on empty LinkedList");
+					else 
+						return head->value;
+				}
+//Returns a reference to the actual last data item in the list.	
+				reference back()
+				{
+					if (!tail)
+						throw std::runtime_error("front() called on empty LinkedList");
+					else 
+						return tail->value;
+				}
+// Delete all items in the list, leaving it empty.
+				void clear() {
+				while (head) {
+      				popBack();
+   				}			
+};
 
 
 

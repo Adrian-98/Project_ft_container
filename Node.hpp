@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Node.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 18:24:10 by adrian            #+#    #+#             */
-/*   Updated: 2021/04/28 13:44:08 by adrian           ###   ########.fr       */
+/*   Updated: 2021/04/29 12:08:38 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@ class Node
 			Node<T>	*prev;
 			Node<T>	*next;
 	public:
-			Node() : prev(NULL), next(NULL){}
-			Node(Node *prev, Node *next): prev(prev), next(next){}
-			Node(Node *prev, Node *next, const T &value): prev(prev), next(next), value(value){}
+			Node() : prev(nullptr), next(nullptr){}
+			Node(const T& value) : next(nullptr), prev(nullptr), value(value) {}
 			
 			Node(Node const &copy) : prev(copy.prev), next(copy.next), value(copy.value){}
 			Node &operator=(Node const &copy)
