@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   List.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:34:41 by adrian            #+#    #+#             */
-/*   Updated: 2021/04/28 13:40:46 by adrian           ###   ########.fr       */
+/*   Updated: 2021/04/29 11:42:46 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@ class List
 			typedef ReverseIterator<iterator> reverse_iterator;
 			typedef ReverseIterator<const_iterator> const_reverse_iterator;
 		private:
+				node_pointer head;
+				node_pointer tail;
+
+				size_type	n_nodes;
+			
 		
 }
 
