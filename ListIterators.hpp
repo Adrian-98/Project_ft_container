@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 12:29:58 by adrian            #+#    #+#             */
-/*   Updated: 2021/04/28 13:34:25 by adrian           ###   ########.fr       */
+/*   Updated: 2021/04/29 19:23:41 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,11 @@ class ListReverseIterator
 		Node<T> *now;
 	public	:
 		ListReverseIterator(): now(NULL){}
-		ListReverseIterator(node<T> *now) : now(now){}
+		ListReverseIterator(Node<T> *now) : now(now){}
 
 		ListReverseIterator(const ListReverseIterator<T>& origin) : now(origin.now){}
 
-		ListReverseIterator(const listIterator<T>& origin) : now(origin.getnode()->getPrev()){}
+		ListReverseIterator(const listReverseIterator<T>& origin) : now(origin.getnode()->getPrev()){}
 
 		ListReverseIterator<T>& operator=(const ListReverseIterator<T>& origin)
 		{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   List.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:34:41 by adrian            #+#    #+#             */
-/*   Updated: 2021/04/29 12:13:38 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/04/30 12:51:05 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,46 +37,125 @@ class List
 				node_pointer head;
 				node_pointer tail;
 
-				size_type	n_nodes;
+				size_type	size_;
 			
 		public:
-				List(): head(NULL), tail(NULL), n_nodes(0){}
-				List(const List<T> &copy): head(copy.head), tail(copy.tail), n_nodes(copy.n_nodes){}
+				List(): head(NULL), tail(NULL), size_(0){
+					tail = new Node<value_type>();
+					head = tail;
+					tail->setPrev = NULL;
+					tail->setNext = NULL;
+				}
+				
+				List(const List<T> &copy): head(copy.head), tail(copy.tail), size_(copy.size_){}
 				List  &operator=(List const &copy)
 				{
 					this->head = copy.head;
 					this->tail = copy.tail;
-					this->n_nodes = copy.n_nodes;
+					this->size_ = copy.size_;
 					return (*this);
 				}		
 				~List(){
 					clear();
+					delete tail;
 				}
-// Returns the size of the list.
-				int size() const { return n_nodes; }
-// Returns true if the list is empty.
+				
+				int size() const { return size_; }
+
 				bool empty() const { return !head; }
-//Returns a reference to the actual front data item in the list.			
+			
 				reference front()
 				{
 					if (!head)
-						throw std::runtime_error("front() called on empty LinkedList");
-					else 
-						return head->value;
+						return (0);
+					else
+						return (head->value);
 				}
-//Returns a reference to the actual last data item in the list.	
+
 				reference back()
 				{
 					if (!tail)
-						throw std::runtime_error("front() called on empty LinkedList");
+						return (0);
 					else 
 						return tail->value;
 				}
-// Delete all items in the list, leaving it empty.
-				void clear() {
-				while (head) {
-      				popBack();
-   				}			
+
+				void clear()
+				{
+					while (head){
+      					popBack();
+					}
+   				}
+
+				void pushFront(const_reference newData)
+				{
+					Node *newNode = new Node(newData)
+					if (!head)
+					{
+						head = newNode;
+						tail = newNode;
+					}
+					else
+					{
+						Node *oldHead = head;
+						head->setPrev(newNode);
+						newNode->setNext(oldHead);
+						head = newNode;
+					}
+					size_++;
+				}
+
+				void pushBack(const_reference newData)
+				{
+					Node *newNode = new Node(newData);
+					if (!head)
+					{
+						head = newNode;
+						tail = newNode;
+					}
+					else
+					{
+						Node* oldTail = tail;
+						tail->setNext(newNode);
+						tail->setPrev(oldTail);
+						tail = newNode;
+					}
+					size_++;
+				}
+
+				void popFront()
+				{
+					if (!head)
+						return;
+					if (!head->next){
+						delete head;
+						head = nullptr;
+						tail = nullptr;
+						size_--;
+						return ;
+					}
+					Node *oldHead = head;
+					head = head->next;
+					head->prev = nullptr;
+					delete oldHead;
+					oldHead = nullptr;
+					size_--;
+				}
+
+				void popback(){
+					if (!head)
+						return;
+					if (!tail->prev){
+						popFront();
+						return;	
+					}
+					Node *oldTail = tail;
+					tail = tail->prev;
+					tail->next = nullptr;
+					delete oldTail;
+					oldTail = nullptr;
+					size_--; 				
+				}
 };
 
 
