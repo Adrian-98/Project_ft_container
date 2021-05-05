@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 12:29:58 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/05 11:36:21 by adrian           ###   ########.fr       */
+/*   Updated: 2021/05/05 11:39:51 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ class ListReverseIterator: public It
 
 		ListReverseIterator(ListReverseIterator const &other) : It(other.now){}
 
-		ListReverseIterator<T>& operator=(ListReverseIterator const &other)
+		ListReverseIterator& operator=(ListReverseIterator const &other)
 		{
 			this->now = other.now;
 			return (*this);
@@ -108,8 +108,8 @@ class ListReverseIterator: public It
 
 		reference operator*()
 		{
-			It tmp(*this)
-			return (*--tmp;)
+			It tmp(*this);
+			return (*--tmp);
 		}
 
 		const_reference operator*() const {
@@ -124,16 +124,16 @@ class ListReverseIterator: public It
 			It tmp(*this);
 			return (&*--tmp);
 		}
-		ReverseIterator operator++(int) {
-			ReverseIterator tmp(*this);
+		ListReverseIterator operator++(int) {
+			ListReverseIterator tmp(*this);
 			operator++();
 			return (tmp);
 		}
 		It &operator++() {
 			return (this->It::operator--());
 		}
-		ReverseIterator operator--(int) {
-			ReverseIterator tmp(*this);
+		ListReverseIterator operator--(int) {
+			ListReverseIterator tmp(*this);
 			operator--();
 			return (tmp);
 		}

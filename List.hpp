@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:34:41 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/05 11:27:26 by adrian           ###   ########.fr       */
+/*   Updated: 2021/05/05 11:50:29 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ class List
 			typedef value_type const &const_reference;
 			typedef ListIterator<node_pointer> iterator;
 			typedef ListIterator<const_pointer> const_iterator;
-			typedef ReverseIterator<iterator> reverse_iterator;
-			typedef ReverseIterator<const_iterator> const_reverse_iterator;
+			typedef ListReverseIterator<iterator> reverse_iterator;
+			typedef ListReverseIterator<const_iterator> const_reverse_iterator;
 		private:
 				node_pointer head;
 				node_pointer tail;
@@ -89,7 +89,7 @@ class List
 
 				void pushFront(const_reference newData)
 				{
-					Node *newNode = new Node(newData)
+					node_pointer newNode = new node_type(newData);
 					if (!head)
 					{
 						head = newNode;
@@ -97,7 +97,7 @@ class List
 					}
 					else
 					{
-						Node *oldHead = head;
+						node_pointer oldHead = head;
 						head->setPrev(newNode);
 						newNode->setNext(oldHead);
 						head = newNode;
@@ -107,7 +107,7 @@ class List
 
 				void pushBack(const_reference newData)
 				{
-					Node *newNode = new Node(newData);
+					node_pointer newNode = new node_type(newData);
 					if (!head)
 					{
 						head = newNode;
@@ -115,7 +115,7 @@ class List
 					}
 					else
 					{
-						Node* oldTail = tail;
+						node_pointer oldTail = tail;
 						tail->setNext(newNode);
 						tail->setPrev(oldTail);
 						tail = newNode;
@@ -134,7 +134,7 @@ class List
 						size_--;
 						return ;
 					}
-					Node *oldHead = head;
+					node_pointer oldHead = head;
 					head = head->next;
 					head->prev = nullptr;
 					delete oldHead;
@@ -142,14 +142,14 @@ class List
 					size_--;
 				}
 
-				void popback(){
+				void popBack(){
 					if (!head)
 						return;
 					if (!tail->prev){
 						popFront();
 						return;	
 					}
-					Node *oldTail = tail;
+					node_pointer oldTail = tail;
 					tail = tail->prev;
 					tail->next = nullptr;
 					delete oldTail;
