@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:34:41 by adrian            #+#    #+#             */
-/*   Updated: 2021/04/30 12:51:05 by adrian           ###   ########.fr       */
+/*   Updated: 2021/05/05 11:27:26 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ class List
 			typedef value_type const *const_pointer;
 			typedef value_type& reference;
 			typedef value_type const &const_reference;
-			typedef ListIterator<value_type, node_type> iterator;
-			typedef ListIterator<value_type const, node_type const> const_iterator;
+			typedef ListIterator<node_pointer> iterator;
+			typedef ListIterator<const_pointer> const_iterator;
 			typedef ReverseIterator<iterator> reverse_iterator;
 			typedef ReverseIterator<const_iterator> const_reverse_iterator;
 		private:
