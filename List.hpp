@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:34:41 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/06 21:14:06 by adrian           ###   ########.fr       */
+/*   Updated: 2021/05/06 21:19:51 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,6 +216,18 @@ class List
 					while (first != last)
 						this->erase(first++);
 					return (first)
+				}
+				
+				iterator insert(iterator position, const_reference val){
+					if (position == this->begin()) {
+						this->push_front(val);
+						return (this->begin());
+					} else if (position == this->end()) {
+						this->push_back(val);
+						return (this->end());
+					}
+					node_pointer newNode = new node_type(val);
+					position.getnode()
 				}
 				
 };

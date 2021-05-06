@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 18:24:10 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/06 21:08:17 by adrian           ###   ########.fr       */
+/*   Updated: 2021/05/06 22:13:18 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,23 @@ class Node
 					this->prev->next = this->next;
 				if (this->next)
 					this->next->prev = this->prev;
+			}
+
+			void insert_before(Node *node) {
+				if (this->prev){
+					node->prev = this->prev;
+					this->prev->next = node;
+				}
+				node->next = this;
+				this->prev = node;
+			}
+			void insert_after(Node *node) {
+				if (this->next){
+					node->next = this->next;
+					this->next->prev = node;
+				}
+				node->prev = this;
+				this->next = node;
 			}
 };
 
