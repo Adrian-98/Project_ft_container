@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 18:24:10 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/06 20:46:04 by adrian           ###   ########.fr       */
+/*   Updated: 2021/05/06 21:08:17 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,12 @@ class Node
 			}
 			Node *clone_whit_value(void){
 				return (new Node(NULL, NULL, this->value));
+			}
+			void disconnect(void) {
+				if (this->prev)
+					this->prev->next = this->next;
+				if (this->next)
+					this->next->prev = this->prev;
 			}
 };
 

@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:34:41 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/06 20:33:57 by adrian           ###   ########.fr       */
+/*   Updated: 2021/05/06 21:14:06 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,54 @@ class List
 					for (size_type i = 0; i < size; i++)
 						this->pushBack(val);
 				}
+				iterator begin(){
+					return (iterator(this->head))
+				}
+				
+				const_iterator begin(){
+					return (const_iterator(this->head));
+				}
+				reverse_iterator rbegin(void) {
+					return (reverse_iterator(this->end()));
+				}
+				
+				const_reverse_iterator rbegin(void) const {
+					return (const_reverse_iterator(this->end()));
+				}
+				
+				iterator end(){
+					return (iterator(this->tail->getNext()))
+				}
+				const_iterator end(){
+					return (const_iterator(this->tail->getNext()));
+				}
+				reverse_iterator rend(void) {
+					return (reverse_iterator(this->begin()));
+				}
+				const_reverse_iterator rend(void) const {
+					return (const_reverse_iterator(this->begin()));
+				}
+				
+				iterator erase(iterator position){
+					if (position == head){
+						this->popFront();
+						return (this->begin());
+					}else if (position == tail){
+						this->popBack();
+						return (this->end());
+					}
+					node_pointer next = position.getnode()->getNext();
+					position.getnode().disconnect();
+					delete position.getnode();
+					--this->m_size;
+					return (iterator(next));	
+				}
+				iterator erase(iterator first, iterator last){
+					while (first != last)
+						this->erase(first++);
+					return (first)
+				}
+				
 };
 
 
