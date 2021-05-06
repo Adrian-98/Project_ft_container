@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:34:41 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/06 17:45:04 by adrian           ###   ########.fr       */
+/*   Updated: 2021/05/06 20:33:57 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,20 +64,20 @@ class List
 
 				bool empty() const { return !head; }
 			
-				reference front()
-				{
-					if (!head)
-						return (0);
-					else
-						return (head->value);
+				reference front() {
+					return (this->head->value());
 				}
-
-				reference back()
-				{
-					if (!tail)
-						return (0);
-					else 
-						return tail->value;
+				
+				const_reference front() const {
+					return (this->head->value());
+				}
+				
+				reference back() {
+					return (this->tail->value());
+				}
+				
+				const_reference back() const {
+					return (this->tail->value());
 				}
 
 				void clear()

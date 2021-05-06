@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 12:41:55 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/05 11:10:10 by adrian           ###   ########.fr       */
+/*   Updated: 2021/05/06 20:43:45 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,13 @@
 int main(void)
 {
 	std::list<int> it;
-
-	std::cout << it.front() <<std::endl;
-	std::cout << it.back() <<std::endl;
+	List<int> ot;
+	
+	
+	ot.pushFront(7);
+	ot.pushBack(8);
+	std::cout << ot.front() <<std::endl;
+	std::cout << ot.back() <<std::endl;
 
 
 }
