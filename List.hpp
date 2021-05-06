@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:34:41 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/05 11:50:29 by adrian           ###   ########.fr       */
+/*   Updated: 2021/05/06 17:45:04 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,20 @@ class List
 					delete oldTail;
 					oldTail = nullptr;
 					size_--; 				
+				}
+				
+				void assing(iterator first, iterator last)
+				{
+					this->clear();
+					while (first != last)
+						this->pushBack(*first++);
+				}
+				
+				void assign(size_type size, const_reference val)
+				{
+					this->clear();
+					for (size_type i = 0; i < size; i++)
+						this->pushBack(val);
 				}
 };
 
