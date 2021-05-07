@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 18:24:10 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/06 22:13:18 by adrian           ###   ########.fr       */
+/*   Updated: 2021/05/07 15:58:14 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ class Node
 			Node getValue(void){
 				return (this->value);
 			}
-			Node setPrev(Node *prev){
+			void setPrev(Node *prev){
 				this->prev = prev;
 			}
-			Node setNext(Node *next){
+			void setNext(Node *next){
 				this->next = next;
 			}
-			Node setValue(T &value){
+			void setValue(T &value){
 				this->value = value;
 			}
 			Node *clone_whit_value(void){

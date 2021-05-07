@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:34:41 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/06 21:19:51 by adrian           ###   ########.fr       */
+/*   Updated: 2021/05/07 16:05:20 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ class List
 				List(): head(NULL), tail(NULL), size_(0){
 					tail = new Node<value_type>();
 					head = tail;
-					tail->setPrev = NULL;
-					tail->setNext = NULL;
+					tail->setPrev(NULL); 
+					tail->setNext(NULL);
 				}
 				
 				List(const List<T> &copy): head(copy.head), tail(copy.tail), size_(copy.size_){}
@@ -54,18 +54,20 @@ class List
 					this->tail = copy.tail;
 					this->size_ = copy.size_;
 					return (*this);
-				}		
-				~List(){
-					clear();
-					delete tail;
 				}
+				void clear()
+				{
+					while (head){
+      					this->popBack();
+					}
+   				}		
 				
 				int size() const { return size_; }
 
 				bool empty() const { return !head; }
 			
 				reference front() {
-					return (this->head->value());
+					return (this->head->value);
 				}
 				
 				const_reference front() const {
@@ -73,19 +75,12 @@ class List
 				}
 				
 				reference back() {
-					return (this->tail->value());
+					return (this->tail->value);
 				}
 				
 				const_reference back() const {
-					return (this->tail->value());
+					return (this->tail->value);
 				}
-
-				void clear()
-				{
-					while (head){
-      					popBack();
-					}
-   				}
 
 				void pushFront(const_reference newData)
 				{
@@ -145,7 +140,7 @@ class List
 				void popBack(){
 					if (!head)
 						return;
-					if (!tail->prev){
+					if (!tail->getPrev()){
 						popFront();
 						return;	
 					}
@@ -156,7 +151,10 @@ class List
 					oldTail = nullptr;
 					size_--; 				
 				}
-				
+				~List(){
+					clear();
+					delete tail;
+				}
 				void assing(iterator first, iterator last)
 				{
 					this->clear();
@@ -170,33 +168,33 @@ class List
 					for (size_type i = 0; i < size; i++)
 						this->pushBack(val);
 				}
-				iterator begin(){
-					return (iterator(this->head))
-				}
+				// iterator begin(){
+				// 	return (iterator(this->head));
+				// }
 				
-				const_iterator begin(){
-					return (const_iterator(this->head));
-				}
-				reverse_iterator rbegin(void) {
-					return (reverse_iterator(this->end()));
-				}
+				// const_iterator begin(){
+				// 	return (const_iterator(this->head));
+				// }
+				// reverse_iterator rbegin(void) {
+				// 	return (reverse_iterator(this->end()));
+				// }
 				
-				const_reverse_iterator rbegin(void) const {
-					return (const_reverse_iterator(this->end()));
-				}
+				// const_reverse_iterator rbegin(void) const {
+				// 	return (const_reverse_iterator(this->end()));
+				// }
 				
-				iterator end(){
-					return (iterator(this->tail->getNext()))
-				}
-				const_iterator end(){
-					return (const_iterator(this->tail->getNext()));
-				}
-				reverse_iterator rend(void) {
-					return (reverse_iterator(this->begin()));
-				}
-				const_reverse_iterator rend(void) const {
-					return (const_reverse_iterator(this->begin()));
-				}
+				// iterator end(){
+				// 	return (iterator(this->tail->getNext()))
+				// }
+				// const_iterator end(){
+				// 	return (const_iterator(this->tail->getNext()));
+				// }
+				// reverse_iterator rend(void) {
+				// 	return (reverse_iterator(this->begin()));
+				// }
+				// const_reverse_iterator rend(void) const {
+				// 	return (const_reverse_iterator(this->begin()));
+				// }
 				
 				iterator erase(iterator position){
 					if (position == head){
@@ -215,7 +213,7 @@ class List
 				iterator erase(iterator first, iterator last){
 					while (first != last)
 						this->erase(first++);
-					return (first)
+					return (first);
 				}
 				
 				iterator insert(iterator position, const_reference val){
@@ -227,7 +225,7 @@ class List
 						return (this->end());
 					}
 					node_pointer newNode = new node_type(val);
-					position.getnode()
+					position.getnode();
 				}
 				
 };
