@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 18:24:10 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/07 15:58:14 by adrian           ###   ########.fr       */
+/*   Updated: 2021/05/09 15:35:06 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,16 @@ class Node
 			
 			virtual ~Node(){}
 			
-			Node *getPrev(void){
+			Node *getprev(void){
 				return (this->prev);
 			}
-			Node *getNext(void){
+			Node *getnext(void){
 				return (this->next);
 			}
-			Node getValue(void){
+			T &getvalue(void) {
+				return (this->value);
+			}
+			T const &getvalue(void) const {
 				return (this->value);
 			}
 			void setPrev(Node *prev){

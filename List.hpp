@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:34:41 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/07 16:05:20 by adrian           ###   ########.fr       */
+/*   Updated: 2021/05/09 15:17:54 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ class List
 				bool empty() const { return !head; }
 			
 				reference front() {
-					return (this->head->value);
+					return (this->head->getvalue());
 				}
 				
 				const_reference front() const {
@@ -75,11 +75,11 @@ class List
 				}
 				
 				reference back() {
-					return (this->tail->value);
+					return (this->tail->getvalue());
 				}
 				
 				const_reference back() const {
-					return (this->tail->value);
+					return (this->tail->value());
 				}
 
 				void pushFront(const_reference newData)
@@ -122,7 +122,7 @@ class List
 				{
 					if (!head)
 						return;
-					if (!head->next){
+					if (!head->getnext()){
 						delete head;
 						head = nullptr;
 						tail = nullptr;
@@ -130,8 +130,8 @@ class List
 						return ;
 					}
 					node_pointer oldHead = head;
-					head = head->next;
-					head->prev = nullptr;
+					head = head->getnext();
+					head->setPrev(nullptr);
 					delete oldHead;
 					oldHead = nullptr;
 					size_--;
@@ -140,13 +140,13 @@ class List
 				void popBack(){
 					if (!head)
 						return;
-					if (!tail->getPrev()){
+					if (!tail->getprev()){
 						popFront();
 						return;	
 					}
 					node_pointer oldTail = tail;
-					tail = tail->prev;
-					tail->next = nullptr;
+					tail = tail->getprev();
+					tail->setNext(nullptr);
 					delete oldTail;
 					oldTail = nullptr;
 					size_--; 				
@@ -204,7 +204,7 @@ class List
 						this->popBack();
 						return (this->end());
 					}
-					node_pointer next = position.getnode()->getNext();
+					node_pointer next = position.getnode()->next();
 					position.getnode().disconnect();
 					delete position.getnode();
 					--this->m_size;
