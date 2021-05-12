@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Node.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 18:24:10 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/09 15:35:06 by adrian           ###   ########.fr       */
+/*   Updated: 2021/05/12 17:19:17 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,6 @@ class Node
 				node->prev = this;
 				this->next = node;
 			}
-};
+
 
 #endif

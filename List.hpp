@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:34:41 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/12 12:56:40 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/05/12 17:30:06 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ class List
 					while (head){
       					this->popBack();
 					}
+					this->head = this->tail;
+					this->tail->getprev(nullptr);
+					this->tail->getnext(nullptr);
    				}		
 				
 				int size() const { return size_; }
@@ -245,6 +248,40 @@ class List
 					return (std::numeric_limits<difference_type>::max() / sizeof(value_type));
 				}
 				
+				void resize(size_type n, value_type val=value_type()) {
+					if (n == 0)
+						this->clear();
+					if (n < this->size_)
+					{
+						iterator first = this->begin();
+						size_type i = 0;
+						while (i < n){
+							i++;
+							first++;
+						}
+						this->erase(first, this->end());
+					}
+					else{
+						this->insert(this->end(), n - this->size_, val);
+					}
+				}
+				
+				void splice (iterator position, List &x){
+					splice(position, x, x.begin(), x.end());
+				}
+
+				void splice (iterator position, list& x, iterator i){
+					iterator next = i;
+					this->splice(position, x, i, ++next;)
+				}
+				
+				void splice (iterator position, list& x, iterator first, iterator last){
+					while (first != last)
+					{
+						node_pointer tmp = first++.getnode();
+					}
+				}
+
 				
 };
 
