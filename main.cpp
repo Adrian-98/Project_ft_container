@@ -6,16 +6,18 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 12:41:55 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/12 12:38:50 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/05/12 19:25:30 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "List.hpp"
+#include "Node.hpp"
 #include <vector>
 #include <iterator>
 #include <string>
+
 #include <iostream>
-#include <list>
+# include "ListIterators.hpp"
+#include "List.hpp"
 
 
 int main(void)
@@ -29,6 +31,8 @@ int main(void)
 	std::cout << ot.front() <<std::endl;
 	std::cout << ot.back() <<std::endl;
 	std::cout << ot.max_size() << std::endl;
+	Node<int> p;
+	ListIterator<int> a;
 
 
 }

@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 18:24:10 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/12 17:19:17 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/05/12 19:28:38 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ template <typename T>
 class Node
 {
 	private:
-			T	 	value;
 			Node<T>	*prev;
 			Node<T>	*next;
+			T	 	value;
 	public:
 			Node() : prev(nullptr), next(nullptr){}
-			Node(const T& value) : next(nullptr), prev(nullptr), value(value) {}
+			Node(const T& value) : prev(nullptr), next(nullptr), value(value) {}
 			
 			Node(Node const &copy) : prev(copy.prev), next(copy.next), value(copy.value){}
 			Node &operator=(Node const &copy)
@@ -85,6 +85,6 @@ class Node
 				node->prev = this;
 				this->next = node;
 			}
-
+};
 
 #endif

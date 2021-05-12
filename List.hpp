@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:34:41 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/12 18:17:43 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/05/12 19:27:22 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ class List
       					this->popBack();
 					}
 					this->head = this->tail;
-					this->tail->getprev(nullptr);
-					this->tail->getnext(nullptr);
+					this->tail->setPrev(nullptr);
+					this->tail->setNext(nullptr);
    				}		
 				
 				int size() const { return size_; }
@@ -270,15 +270,27 @@ class List
 					splice(position, x, x.begin(), x.end());
 				}
 
-				void splice (iterator position, list& x, iterator i){
+				void splice (iterator position, List& x, iterator i){
 					iterator next = i;
-					this->splice(position, x, i, ++next;)
+					this->splice(position, x, i, ++next);
 				}
 				
-				void splice (iterator position, list& x, iterator first, iterator last){
-					insert(position, first, last)
+				void splice (iterator position, List& x, iterator first, iterator last){
+					insert(position, first, last);
 					while (first != last)
-						erase(first++);
+						x.erase(first++);
+				}
+
+				void remove (const value_type& val){
+					iterator first = this->begin();
+					iterator last = this->end();
+					while (first != last)
+					{
+						if (*first == val)
+							first = this->erase(first);
+						else
+							first++;
+					}					
 				}
 
 				
