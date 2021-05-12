@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ListIterators.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 12:29:58 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/05 11:39:51 by adrian           ###   ########.fr       */
+/*   Updated: 2021/05/12 12:57:42 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ class ListIterator{
 
 			T& operator*()
 			{
-				return (now->getValue());
+				return (now->getvalue());
 			}
 			ListIterator<T>& operator++()
 			{
-				this->now = this->now->getNext();
+				this->now = this->now->getnext();
 				return (*this);
 			}
 			ListIterator<T> operator++(int)

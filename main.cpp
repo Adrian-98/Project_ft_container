@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 12:41:55 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/06 20:43:45 by adrian           ###   ########.fr       */
+/*   Updated: 2021/05/12 12:38:50 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 int main(void)
 {
-	std::list<int> it;
+	//std::list<int> ot;
 	List<int> ot;
 	
 	
@@ -28,6 +28,7 @@ int main(void)
 	ot.pushBack(8);
 	std::cout << ot.front() <<std::endl;
 	std::cout << ot.back() <<std::endl;
+	std::cout << ot.max_size() << std::endl;
 
 
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   List.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:34:41 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/09 15:17:54 by adrian           ###   ########.fr       */
+/*   Updated: 2021/05/12 12:56:40 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,33 +168,33 @@ class List
 					for (size_type i = 0; i < size; i++)
 						this->pushBack(val);
 				}
-				// iterator begin(){
-				// 	return (iterator(this->head));
-				// }
+				iterator begin(){
+					return (iterator(this->head));
+				}
 				
-				// const_iterator begin(){
-				// 	return (const_iterator(this->head));
-				// }
-				// reverse_iterator rbegin(void) {
-				// 	return (reverse_iterator(this->end()));
-				// }
+				const_iterator begin() const{
+					return (const_iterator(this->head));
+				}
+				reverse_iterator rbegin(void) {
+					return (reverse_iterator(this->end()));
+				}
 				
-				// const_reverse_iterator rbegin(void) const {
-				// 	return (const_reverse_iterator(this->end()));
-				// }
+				const_reverse_iterator rbegin(void) const {
+					return (const_reverse_iterator(this->end()));
+				}
 				
-				// iterator end(){
-				// 	return (iterator(this->tail->getNext()))
-				// }
-				// const_iterator end(){
-				// 	return (const_iterator(this->tail->getNext()));
-				// }
-				// reverse_iterator rend(void) {
-				// 	return (reverse_iterator(this->begin()));
-				// }
-				// const_reverse_iterator rend(void) const {
-				// 	return (const_reverse_iterator(this->begin()));
-				// }
+				iterator end(){
+					return (iterator(this->tail->getNext()));
+				}
+				const_iterator end() const{
+					return (const_iterator(this->tail->getNext()));
+				}
+				reverse_iterator rend(void) {
+					return (reverse_iterator(this->begin()));
+				}
+				const_reverse_iterator rend(void) const {
+					return (const_reverse_iterator(this->begin()));
+				}
 				
 				iterator erase(iterator position){
 					if (position == head){
@@ -225,8 +225,26 @@ class List
 						return (this->end());
 					}
 					node_pointer newNode = new node_type(val);
-					position.getnode();
+					position.getnode()->insert_before(newNode);
+					this->size_++;
+					return (iterator(newNode));
 				}
+
+				void insert (iterator position, size_type n, const_reference val){
+					for (size_type i = 0; i < n; i++)
+						this->insert(position, val);
+				}
+
+				void insert (iterator position, iterator first, iterator last){
+					while (first != last)
+					{
+						this->insert(position, *first++);
+					}
+				}
+				size_type max_size(void) const{
+					return (std::numeric_limits<difference_type>::max() / sizeof(value_type));
+				}
+				
 				
 };
 
