@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:34:41 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/12 17:30:06 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/05/12 18:17:43 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -276,10 +276,9 @@ class List
 				}
 				
 				void splice (iterator position, list& x, iterator first, iterator last){
+					insert(position, first, last)
 					while (first != last)
-					{
-						node_pointer tmp = first++.getnode();
-					}
+						erase(first++);
 				}
 
 				
