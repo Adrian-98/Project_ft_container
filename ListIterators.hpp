@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 12:29:58 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/12 12:57:42 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/05/13 14:36:42 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ class ListIterator{
 			ListIterator<T> operator++(int)
 			{
 				ListIterator<T> temp(*this);
-				now = now->getNext();
+				now = now->getnext();
 				return (temp);
 			}
 			ListIterator<T> &operator--()

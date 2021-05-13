@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 18:24:10 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/12 19:30:06 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/05/13 14:03:49 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 template <typename T>
 class Node
 {
-	private:
+	public:
 			Node<T>	*prev;
 			Node<T>	*next;
 			T	 	value;

@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 12:41:55 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/12 19:25:30 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/05/13 14:38:18 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ int main(void)
 	
 	ot.pushFront(7);
 	ot.pushBack(8);
+	
+
+	std::cout <<  ot.begin().getnode()->getvalue() <<std::endl;
 	std::cout << ot.front() <<std::endl;
 	std::cout << ot.back() <<std::endl;
 	std::cout << ot.max_size() << std::endl;
-	Node<int> p;
-	ListIterator<int> a;
-
 
 }

@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:34:41 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/13 12:47:45 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/05/13 14:37:44 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ class List
 			typedef value_type const *const_pointer;
 			typedef value_type& reference;
 			typedef value_type const &const_reference;
-			typedef ListIterator<node_pointer> iterator;
-			typedef ListIterator<const_pointer> const_iterator;
+			typedef ListIterator<value_type> iterator;
+			typedef ListIterator<value_type> const_iterator;
 			typedef ListReverseIterator<iterator> reverse_iterator;
 			typedef ListReverseIterator<const_iterator> const_reverse_iterator;
 		private:
@@ -57,9 +57,7 @@ class List
 				}
 				void clear()
 				{
-					while (head){
-      					this->popBack();
-					}
+					this->erase(begin(), end());
 					this->head = this->tail;
 					this->tail->setPrev(nullptr);
 					this->tail->setNext(nullptr);
@@ -74,7 +72,7 @@ class List
 				}
 				
 				const_reference front() const {
-					return (this->head->value());
+					return (this->head->getvalue());
 				}
 				
 				reference back() {
@@ -82,7 +80,7 @@ class List
 				}
 				
 				const_reference back() const {
-					return (this->tail->value());
+					return (this->tail->getvalue());
 				}
 
 				void pushFront(const_reference newData)
@@ -155,7 +153,8 @@ class List
 					size_--; 				
 				}
 				~List(){
-					clear();
+					if (this->size_ > 0)
+						clear();
 					delete tail;
 				}
 				void assing(iterator first, iterator last)
@@ -187,10 +186,10 @@ class List
 				}
 				
 				iterator end(){
-					return (iterator(this->tail->getNext()));
+					return (iterator(this->tail));
 				}
 				const_iterator end() const{
-					return (const_iterator(this->tail->getNext()));
+					return (const_iterator(this->tail));
 				}
 				reverse_iterator rend(void) {
 					return (reverse_iterator(this->begin()));
@@ -207,10 +206,10 @@ class List
 						this->popBack();
 						return (this->end());
 					}
-					node_pointer next = position.getnode()->next();
-					position.getnode().disconnect();
+					node_pointer next = position.getnode()->getnext();
+					position.getnode()->disconnect();
 					delete position.getnode();
-					--this->m_size;
+					--this->size_;
 					return (iterator(next));	
 				}
 				iterator erase(iterator first, iterator last){
@@ -293,6 +292,20 @@ class List
 					}					
 				}
 				
+				template <typename Predicate>
+				void remove_if (Predicate pred){
+					iterator first = this->begin();
+					iterator last = this->end();
+
+					while (first != last)
+					{
+						if (*pred == *first)
+							first = erase(first);
+						else
+							first++;
+					}	
+				}
+				
 				void swap (List& x){
 					List tmp;
 					tmp.assign(begin(), end());
@@ -301,6 +314,10 @@ class List
 					else
 						this->assign(x.begin(), x.end());
 					x.assign(tmp.begin(), tmp.end());
+				}
+
+				void unique(){
+					
 				}
 };
 
