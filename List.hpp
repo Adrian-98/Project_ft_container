@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:34:41 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/13 18:58:37 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/05/13 19:14:47 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -322,12 +322,23 @@ class List
 					
 					while (first != last)
 					{
-						if (*first == first.getnode()->getnext()->getvalue())
-						{
-							while (*first == first.getnode()->getnext()->getvalue())
-								first = erase(first++);
-						}
-						else 
+						while (*first == first.getnode()->getnext()->getvalue())
+							erase(first++); 
+						if (first != NULL)
+							first++;
+					}
+				}
+				
+				template <class BinaryPredicate>
+  				void unique (BinaryPredicate binary_pred){
+					iterator first = this->begin();
+					iterator last = this->end();
+					
+					while (first != last)
+					{
+						if (binary_pred(*first, first.getnode()->getnext()->getvalue()))
+							erase(first);
+						if (first != NULL)
 							first++;
 					}
 				}

@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 12:41:55 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/13 18:55:38 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/05/13 19:14:38 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include "ListIterators.hpp"
 #include "List.hpp"
 
+bool same_integral_part (double first, double second)
+{ return ( int(first)==int(second) ); }
 
 int main(void)
 {
