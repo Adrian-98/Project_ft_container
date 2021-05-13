@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:34:41 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/13 14:37:44 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/05/13 18:58:37 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -317,7 +317,19 @@ class List
 				}
 
 				void unique(){
+					iterator first = this->begin();
+					iterator last = this->end();
 					
+					while (first != last)
+					{
+						if (*first == first.getnode()->getnext()->getvalue())
+						{
+							while (*first == first.getnode()->getnext()->getvalue())
+								first = erase(first++);
+						}
+						else 
+							first++;
+					}
 				}
 };
 
