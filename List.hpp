@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:34:41 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/12 19:27:22 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/05/13 12:47:45 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -292,8 +292,16 @@ class List
 							first++;
 					}					
 				}
-
 				
+				void swap (List& x){
+					List tmp;
+					tmp.assign(begin(), end());
+					if (x.size_ == 0)
+						this->clear();
+					else
+						this->assign(x.begin(), x.end());
+					x.assign(tmp.begin(), tmp.end());
+				}
 };
 
 
