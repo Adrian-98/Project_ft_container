@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:34:41 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/17 13:19:47 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/05/17 14:16:14 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -368,7 +368,6 @@ class List
 						return ;
 					}
 					iterator f1 = this->begin();
-					iterator f1 = this->begin();
 					iterator e1 = this->end();
 					iterator f2 = x.begin();
 					iterator e2 = x.end();
@@ -387,6 +386,12 @@ class List
 							++f1;
 					}
 					this->splice(e1, x);
+				}
+				
+				void sort(void) {
+					if (this->m_size <= 1)
+						return ;
+					//this->sort(&less_than<value_type>);
 				}
 				
 				template <class Compare>
@@ -409,10 +414,23 @@ class List
 								*next = *first;
 								*first = tmp;
 							}
-							next++;
 						}
 						first++;
 					}
+				}
+
+				void reverse(){
+					if (size_ <= 1)
+						return ;
+					iterator first = this->begin();
+					iterator last = this->end();
+					List tmp;
+					while (first != last)
+						tmp.popFront(first++);
+					first = tmp.begin();
+					last = tmp.end();
+					this->clear();
+					this->insert(this->begin(), first, last);
 				}
 };
 
