@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:34:41 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/17 14:16:14 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/05/17 14:19:55 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -431,6 +431,50 @@ class List
 					last = tmp.end();
 					this->clear();
 					this->insert(this->begin(), first, last);
+				}
+				
+				template<typename value_type>
+				bool operator==(List<value_type> const &lhs, List<value_type> const &rhs) {
+					if (lhs.size() != rhs.size())
+						return (false);
+					typename List<value_type>::const_iterator first1 = lhs.begin();
+					typename List<value_type>::const_iterator last1 = lhs.end();
+					typename List<value_type>::const_iterator first2 = rhs.begin();
+					typename List<value_type>::const_iterator last2 = rhs.end();
+					while (first1 != last1)
+						if (*first1++ != *first2++)
+							return (false);
+					return (true);
+				}
+
+				template<typename T>
+				bool operator!=(List<T> const &lhs, List<T> const &rhs) {
+					return (!(lhs == rhs));
+				}
+
+				template<typename T>
+				bool operator<(List<T> const &lhs, List<T> const &rhs) {
+					return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
+				}
+
+				template<typename T>
+				bool operator<=(List<T> const &lhs, List<T> const &rhs) {
+					return (!(rhs < lhs));
+				}
+
+				template<typename T>
+				bool operator>(List<T> const &lhs, List<T> const &rhs) {
+					return (rhs < lhs);
+				}
+
+				template<typename T>
+				bool operator>=(List<T> const &lhs, List<T> const &rhs) {
+					return (!(lhs < rhs));
+				}
+				
+				template <class T>
+  				void swap (list<T>& x, list<T>& y){
+					x.swap(y);	  
 				}
 };
 
