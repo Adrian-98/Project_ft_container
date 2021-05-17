@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:34:41 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/17 12:45:50 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/05/17 13:19:47 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -387,6 +387,32 @@ class List
 							++f1;
 					}
 					this->splice(e1, x);
+				}
+				
+				template <class Compare>
+				void sort(Compare comp){
+					if (size_ <= 1)
+						return ;
+					value_type tmp;
+					iterator first = this->begin();
+					iterator last = this->end();
+					iterator next;	
+					
+					while (first != last)
+					{
+						next = first;
+						while (++next != last)
+						{
+							if((*comp)(*next, *first))
+							{
+								tmp = *next;
+								*next = *first;
+								*first = tmp;
+							}
+							next++;
+						}
+						first++;
+					}
 				}
 };
 
