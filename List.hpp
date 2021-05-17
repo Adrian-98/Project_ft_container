@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:34:41 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/13 19:14:47 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/05/17 12:45:50 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -323,7 +323,7 @@ class List
 					while (first != last)
 					{
 						while (*first == first.getnode()->getnext()->getvalue())
-							erase(first++); 
+							first = erase(first); 
 						if (first != NULL)
 							first++;
 					}
@@ -341,6 +341,52 @@ class List
 						if (first != NULL)
 							first++;
 					}
+				}
+				
+				void merge (List& x){
+					if (&x == this)
+						return ;
+					if (this->size_ == 0) {
+						this->assign(x.begin(), x.end());
+						x.clear();
+						return ;
+					}
+					iterator first = x.begin();
+					iterator last = x.end();
+					iterator position = this->end();
+					insert(++position, first, last);
+					x.clear();
+				}
+
+				template <class Compare>
+ 				void merge (List& x, Compare comp){
+					 if (&x == this)
+						return ;
+					if (this->size_ == 0) {
+						this->assign(x.begin(), x.end());
+						x.clear();
+						return ;
+					}
+					iterator f1 = this->begin();
+					iterator f1 = this->begin();
+					iterator e1 = this->end();
+					iterator f2 = x.begin();
+					iterator e2 = x.end();
+
+					while (f1 != e1 && f2 != e2) {
+						if ((*comp)(*f2, *f1)) {
+							x.m_begin = f2.as_node()->next();
+							--x.m_size;
+							f2.as_node()->disconnect();
+							f1.as_node()->insert_before(f2.as_node());
+							if (f1 == this->begin())
+								this->m_begin = this->m_begin->previous();
+							++this->m_size;
+							f2 = x.begin();
+						} else
+							++f1;
+					}
+					this->splice(e1, x);
 				}
 };
 
