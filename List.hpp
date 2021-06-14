@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   List.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:34:41 by adrian            #+#    #+#             */
-/*   Updated: 2021/05/17 14:19:55 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/06/14 14:15:13 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "Node.hpp"
 # include "ListIterators.hpp"
+# include "Algorithm.hpp"
 
 template<typename T>
 class List
@@ -391,7 +392,7 @@ class List
 				void sort(void) {
 					if (this->m_size <= 1)
 						return ;
-					//this->sort(&less_than<value_type>);
+					this->sort(&less_than<value_type>);
 				}
 				
 				template <class Compare>
@@ -433,6 +434,11 @@ class List
 					this->insert(this->begin(), first, last);
 				}
 				
+  				void swap (List<T>& x, List<T>& y){
+					x.swap(y);	  
+				}
+};
+
 				template<typename value_type>
 				bool operator==(List<value_type> const &lhs, List<value_type> const &rhs) {
 					if (lhs.size() != rhs.size())
@@ -454,7 +460,7 @@ class List
 
 				template<typename T>
 				bool operator<(List<T> const &lhs, List<T> const &rhs) {
-					return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
+					return (lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
 				}
 
 				template<typename T>
@@ -471,12 +477,7 @@ class List
 				bool operator>=(List<T> const &lhs, List<T> const &rhs) {
 					return (!(lhs < rhs));
 				}
-				
-				template <class T>
-  				void swap (list<T>& x, list<T>& y){
-					x.swap(y);	  
-				}
-};
+
 
 
 
