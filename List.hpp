@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 13:34:41 by adrian            #+#    #+#             */
-/*   Updated: 2021/06/14 14:15:13 by adrian           ###   ########.fr       */
+/*   Updated: 2021/06/14 16:43:04 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -439,46 +439,43 @@ class List
 				}
 };
 
-				template<typename value_type>
-				bool operator==(List<value_type> const &lhs, List<value_type> const &rhs) {
-					if (lhs.size() != rhs.size())
+			template<typename value_type>
+			bool operator==(List<value_type> const &lhs, List<value_type> const &rhs) {
+				if (lhs.size() != rhs.size())
+					return (false);
+				typename List<value_type>::const_iterator first1 = lhs.begin();
+				typename List<value_type>::const_iterator last1 = lhs.end();
+				typename List<value_type>::const_iterator first2 = rhs.begin();
+				typename List<value_type>::const_iterator last2 = rhs.end();
+				while (first1 != last1)
+					if (*first1++ != *first2++)
 						return (false);
-					typename List<value_type>::const_iterator first1 = lhs.begin();
-					typename List<value_type>::const_iterator last1 = lhs.end();
-					typename List<value_type>::const_iterator first2 = rhs.begin();
-					typename List<value_type>::const_iterator last2 = rhs.end();
-					while (first1 != last1)
-						if (*first1++ != *first2++)
-							return (false);
-					return (true);
-				}
+				return (true);
+			}
 
-				template<typename T>
-				bool operator!=(List<T> const &lhs, List<T> const &rhs) {
-					return (!(lhs == rhs));
-				}
+			template<typename T>
+			bool operator!=(List<T> const &lhs, List<T> const &rhs) {
+				return (!(lhs == rhs));
+			}
 
-				template<typename T>
-				bool operator<(List<T> const &lhs, List<T> const &rhs) {
-					return (lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
-				}
+			template<typename T>
+			bool operator<(List<T> const &lhs, List<T> const &rhs) {
+				return (lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
+			}
 
-				template<typename T>
-				bool operator<=(List<T> const &lhs, List<T> const &rhs) {
-					return (!(rhs < lhs));
-				}
+			template<typename T>
+			bool operator<=(List<T> const &lhs, List<T> const &rhs) {
+				return (!(rhs < lhs));
+			}
 
-				template<typename T>
-				bool operator>(List<T> const &lhs, List<T> const &rhs) {
-					return (rhs < lhs);
-				}
+			template<typename T>
+			bool operator>(List<T> const &lhs, List<T> const &rhs) {
+				return (rhs < lhs);
+			}
 
-				template<typename T>
-				bool operator>=(List<T> const &lhs, List<T> const &rhs) {
-					return (!(lhs < rhs));
-				}
-
-
-
+			template<typename T>
+			bool operator>=(List<T> const &lhs, List<T> const &rhs) {
+				return (!(lhs < rhs));
+			}
 
 #endif
