@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 19:53:25 by adrian            #+#    #+#             */
-/*   Updated: 2021/06/23 19:53:57 by adrian           ###   ########.fr       */
+/*   Updated: 2021/09/06 13:45:27 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ public:
 	}
 
 	void push(const_reference val) {
-		this->container.push_back(val);
+		this->container.pushBack(val);
 	}
 	void pop(void) {
-		this->container.pop_back();
+		this->container.popBack();
 	}
 
 	template<typename stack_type, typename container_type>

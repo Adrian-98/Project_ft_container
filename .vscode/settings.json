@@ -58,6 +58,10 @@
         "system_error": "cpp",
         "tuple": "cpp",
         "typeinfo": "cpp",
-        "__functional_03": "cpp"
+        "__functional_03": "cpp",
+        "__string": "cpp",
+        "cwchar": "cpp",
+        "cwctype": "cpp",
+        "iostream": "cpp"
     }
 }
