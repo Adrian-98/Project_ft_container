@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 11:20:37 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/09/15 12:37:49 by adrian           ###   ########.fr       */
+/*   Updated: 2021/09/15 18:13:06 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,19 @@ class Vector
             const_reference back() const {
                 return this->_ptr[_size - 1];
             }
+
+            void assign (size_type n, const value_type& val){
+                clear();
+                insert(begin(), n, val);
+            }
+            void assign(iterator first, iterator last) {
+                clear();
+                insert(begin(), first, last);
+            }
+
+            void push_back(const value_type& val) {
+                insert(end(), val);
+            }   
 
             
 
