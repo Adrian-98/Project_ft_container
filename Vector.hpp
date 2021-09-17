@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 11:20:37 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/09/15 18:13:06 by adrian           ###   ########.fr       */
+/*   Updated: 2021/09/17 12:13:06 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,7 +185,39 @@ class Vector
                 insert(end(), val);
             }   
 
-            
+            void pop_back() {
+                erase(end() - 1);
+            }
+
+            iterator insert(iterator position, const value_type& val) {
+                size_type init = 1;
+                insert(position, init, val);
+                return position;
+            }
+
+            void insert (iterator position, size_type n, const value_type& val){
+                if (!n)
+                    return ;
+                    
+                size_type index = 0;
+                iterator it = this->begin();
+                while (it != pos){
+                    it++;
+                    index++;
+                }
+                if (_size + n > _capacity){
+                    reserve(_size + n);
+                    std::allocator<T> alloc;
+                    for (ptrdiff_t i = _size - 1; i >= (ptrdiff_t)index; i--)
+                    {
+                        alloc.construct(&_container[i + n], _container[i]);
+                        alloc.destroy(&_container[i]);
+                    }
+                    for (size_type i = index; i < index + n; i++)
+                        alloc.construct(&_container[i], val);
+                    _size += n;
+                }
+            }
 
             
 };
