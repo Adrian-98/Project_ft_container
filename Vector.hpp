@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 11:20:37 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/09/17 12:13:06 by adrian           ###   ########.fr       */
+/*   Updated: 2021/09/17 12:47:28 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,7 +201,7 @@ class Vector
                     
                 size_type index = 0;
                 iterator it = this->begin();
-                while (it != pos){
+                while (it != position){
                     it++;
                     index++;
                 }
@@ -219,7 +219,99 @@ class Vector
                 }
             }
 
+            void insert (iterator position, InputIterator first, InputIterator last){
+                iterator it = this->begin();
+                size_type n = last - first;
+                size_type index = 0;
+                
+                while (it != position) {
+                    ++it;
+                    ++index;
+                }
+                if (!n)
+                    return ;
+                if (_size + n > _capacity)
+                    reserve(_size + n);
+                std::allocator<T> alloc;
+                for (ptrdiff_t i = _size - 1; i >= (ptrdiff_t)index; i--)
+                {
+                    alloc.construct(&_container[i + n], _container[i]);
+                    alloc.destroy(&_container[i]);
+                }
+                for (iterator ite = first; ite != last; ++ite)
+                    alloc.construct(&_container[index++], *ite);
+                _size += n;
+            }
+
+            iterator erase (iterator position){
+                erase(position, position + 1);
+            }
+
+            iterator erase (iterator first, iterator last){
+                iterator it = this->begin();
+                size_type n = last - first;
+                while (it != first){
+                    index++;
+                    it++;
+                }
+                if (n <= 0)
+                    return ;
+                std::allocator<T> alloc;
+                for (size_t i = index; i < index + n; i++)
+                    alloc.destroy(&_container[i]);
+                for (size_t i = index + n; i < _size; i++)
+                {
+                    new (&_container[i - n]) value_type(_container[i]);
+                    alloc.destroy(&_container[i]);
+                }
+                _size -= n;
+                return first;
+            }
+
+            void swap(Vector& x) {
+                std::swap(this->_ptr, x._ptr);
+                std::swap(this->_size, x._size);
+                std::swap(this->_capacity, x._capacity); 
+            }
             
+            void clear() {
+                erase(this->begin(), this->end());
+            }
+
+            template<typename T>
+            bool operator==(Vector<T> const &lhs, Vector<T> const &rhs) {
+                return (lhs.size() == rhs.size() && std::equal(lhs.begin(), lhs.end(), rhs.begin()));
+            }
+
+            template<typename T>
+            bool operator!=(Vector<T> const &lhs, Vector<T> const &rhs) {
+                return (!(lhs == rhs));
+            }
+
+            template<typename T>
+            bool operator<(Vector<T> const &lhs, Vector<T> const &rhs) {
+                return std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
+            }
+
+            template<typename T>
+            bool operator<=(Vector<T> const &lhs, Vector<T> const &rhs) {
+                return (!(rhs < lhs));
+            }
+
+            template<typename T>
+            bool operator>(Vector<T> const &lhs, Vector<T> const &rhs) {
+                return (rhs < lhs);
+            }
+
+            template<typename T>
+            bool operator>=(Vector<T> const &lhs, Vector<T> const &rhs) {
+                return (!(lhs < rhs));
+            }
+
+            template<typename T>
+            void swap(Vector<T> &x, Vector<T> &y) {
+                x.swap(y);
+            }
 };
 
 #endif
