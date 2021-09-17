@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 11:21:29 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/09/15 11:45:46 by adrian           ###   ########.fr       */
+/*   Updated: 2021/09/17 13:18:15 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,39 +101,44 @@ class VectorReverseIterator: public It
 		VectorReverseIterator& operator=(VectorReverseIterator const &x) {this->_base = x._base; return *this; }
 		
 
-		reference operator*()
-		{
+		reference operator*() const{
 			It tmp(_base);
 			return (*--tmp);
 		}
 
-		const_reference operator*() const {
+		const_reference operator*() {
 			It tmp(_base);
 			return (*--tmp);
 		}
+		
 		pointer operator->() {
 			It tmp(_base);
 			return (&*--tmp);
 		}
+
 		const_pointer operator->() const {
 			It tmp(_base);
 			return (&*--tmp);
 		}
+		
+		VectorReverseIterator &operator++() {
+			--_base;
+			return *this;
+		}
+
 		VectorReverseIterator operator++(int) {
-			VectorReverseIterator tmp(_base);
-			operator++();
-			return (tmp);
+			VectorReverseIterator tmp(_base--);
+			return tmp;
 		}
-		It &operator++() {
-			return (this->It::operator--());
+
+		VectorReverseIterator &operator--() {
+			++_base;
+			return *this;
 		}
+
 		VectorReverseIterator operator--(int) {
-			VectorReverseIterator tmp(_base);
-			operator--();
-			return (tmp);
-		}
-		It &operator--() {
-			return (this->It::operator++());
+			VectorReverseIterator tmp(_base++);
+			return tmp;
 		}
         
         bool operator==(const VectorReverseIterator &c) { return this->_base == c._base; }
