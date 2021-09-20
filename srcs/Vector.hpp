@@ -226,9 +226,9 @@ namespace ft
                     _size +=  n;
                 }
                 
-                template <class InputIterator>
-                void insert (iterator position, InputIterator first, InputIterator last,
-                typename std::enable_if<!std::numeric_limits<InputIterator>::is_specialized>::type *_if = 0)
+                //template <class InputIterator>
+                void insert (iterator position, iterator first, iterator last)
+                //typename std::enable_if<!std::numeric_limits<InputIterator>::is_specialized>::type *_if = 0)
                 {
                     iterator it = this->begin();
                     size_type index = 0;
