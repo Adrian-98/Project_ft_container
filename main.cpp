@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 12:49:58 by adrian            #+#    #+#             */
-/*   Updated: 2021/09/20 15:51:55 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/09/20 17:17:40 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,46 @@
 #include "srcs/Vector.hpp"
 #include <set>
 #include "srcs/Algorithm.hpp"
+#include "srcs/Stack.hpp"
+
+void test_stack()
+{
+    std::cout << "| STACK TEST |\n\n";
+
+    ft::Vector<int> myvector (2,200);         // list with 2 elements
+
+    ft::Stack<int> first;                 // empty Stack
+    ft::Stack<int,ft::Vector<int> > second; // empty Stack with list as underlying container
+    ft::Stack<int,ft::Vector<int> > third (myvector);
+
+    std::cout << "size of first: " << first.size() << '\n';
+    std::cout << "size of second: " << second.size() << '\n';
+    std::cout << "size of third: " << third.size() << "\n\n";
+
+    std::cout << "second empty?: ";
+    if (second.empty() == false)
+        std::cout << "not empty\n";
+    else
+        std::cout << "empty\n";
+  
+    std::cout << "third empty?: ";
+    if (third.empty() == false)
+        std::cout << "not empty\n\n";
+    else
+        std::cout << "empty\n\n";
+
+    third.push(10);
+    third.push(7);
+    std::cout << "third.push(10)\n";
+    std::cout << "third.push(7)\n\n"; 
+    std::cout << "third.top() is now " << third.top() << "\n\n";
+    third.pop();
+    third.pop();
+    std::cout << "third.pop()\n";
+    std::cout << "third.pop()\n";
+    std::cout << "third.front() is now " << third.top() << '\n';
+    std::cout << "\n";
+}
 
 
 void test_vector()
@@ -134,8 +174,7 @@ void test_vector()
     for (ft::Vector<int>::iterator it = first.begin(); it != first.end(); it++)
         std::cout << *it << " ";
     std::cout << "\n\nfirst.pop_back(3):\n";
-
- 
+    
     first.pop_back();
     for (ft::Vector<int>::iterator it = first.begin(); it != first.end(); it++)
         std::cout << *it << " ";
