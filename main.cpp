@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 12:49:58 by adrian            #+#    #+#             */
-/*   Updated: 2021/09/20 17:17:40 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/09/20 17:41:02 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void test_stack()
 {
     std::cout << "| STACK TEST |\n\n";
 
-    ft::Vector<int> myvector (2,200);         // list with 2 elements
+    ft::Vector<int> myvector (2,200);         // vector with 2 elements
 
     ft::Stack<int> first;                 // empty Stack
-    ft::Stack<int,ft::Vector<int> > second; // empty Stack with list as underlying container
+    ft::Stack<int,ft::Vector<int> > second; // empty Stack with vector as underlying container
     ft::Stack<int,ft::Vector<int> > third (myvector);
 
     std::cout << "size of first: " << first.size() << '\n';
@@ -47,11 +47,14 @@ void test_stack()
     std::cout << "third.push(10)\n";
     std::cout << "third.push(7)\n\n"; 
     std::cout << "third.top() is now " << third.top() << "\n\n";
+    std::cout << "third.size() is now: " << third.size() << std::endl;
+    std::cout << "\n";
     third.pop();
     third.pop();
     std::cout << "third.pop()\n";
     std::cout << "third.pop()\n";
-    std::cout << "third.front() is now " << third.top() << '\n';
+    std::cout << "third.front() is now: " << third.top() << '\n';
+    std::cout << "third.size() is now: " << third.size() << std::endl;
     std::cout << "\n";
 }
 
@@ -198,6 +201,6 @@ void test_vector()
 
 int main (void)
 {
-    test_vector();
+    test_stack();
     return 0;
 }
