@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Vector.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 11:20:37 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/09/17 13:24:23 by adrian           ###   ########.fr       */
+/*   Updated: 2021/09/20 13:19:49 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,13 +133,14 @@ namespace ft
                     else if (n > _capacity)
                     {
                         pointer tmp = static_cast<pointer>(::operator new(sizeof(value_type) * n));
-                        for (size_t i = 0; i < this->_size; i++)
+                        if (this->_container)
                         {
-                            new (&tmp[i]) value_type(this->_container[i]);
-                            delete (this->_container);
+                            for (size_t i = 0; i < this->_size; i++)
+                                new (&tmp[i]) value_type(this->_container[i]);
+                            delete(this->_container);
                         }
-                        _capacity = n;
-                        _container = tmp;
+                        this->_capacity = n;
+                        this->_container = tmp;   
                     }
                 }
 

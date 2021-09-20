@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 12:49:58 by adrian            #+#    #+#             */
-/*   Updated: 2021/09/17 13:23:29 by adrian           ###   ########.fr       */
+/*   Updated: 2021/09/20 13:20:58 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ void test_vector()
 
     first.insert(first.begin(), 1, 1);
     first.insert(first.end(), 1, 2);
-    first.insert(first.end(), 1, 3);
+    //first.insert(first.end(), 1, 3);
+    std::cout << "hola" << std::endl;
 
     for (ft::Vector<int>::iterator it = first.begin(); it != first.end(); it++)
         std::cout << *it << " ";
@@ -134,7 +135,8 @@ void test_vector()
     for (ft::Vector<int>::iterator it = first.begin(); it != first.end(); it++)
         std::cout << *it << " ";
     std::cout << "\n\nfirst.pop_back(3):\n";
-    first.pop_back();
+    std::cout << "holaaaa" << std::endl;
+   // first.pop_back();
     for (ft::Vector<int>::iterator it = first.begin(); it != first.end(); it++)
         std::cout << *it << " ";
     std::cout << "\n\nfirst.insert(first.begin(), 2, 2):\n";
