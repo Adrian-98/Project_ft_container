@@ -6,14 +6,14 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 12:49:58 by adrian            #+#    #+#             */
-/*   Updated: 2021/09/20 13:20:58 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/09/20 15:51:55 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Vector.hpp"
+#include "srcs/Vector.hpp"
 #include <set>
-#include "Algorithm.hpp"
+#include "srcs/Algorithm.hpp"
 
 
 void test_vector()
@@ -50,9 +50,8 @@ void test_vector()
 
     first.insert(first.begin(), 1, 1);
     first.insert(first.end(), 1, 2);
-    //first.insert(first.end(), 1, 3);
-    std::cout << "hola" << std::endl;
-
+    first.insert(first.end(), 1, 3);
+    
     for (ft::Vector<int>::iterator it = first.begin(); it != first.end(); it++)
         std::cout << *it << " ";
     std::cout << "\n";
@@ -135,8 +134,9 @@ void test_vector()
     for (ft::Vector<int>::iterator it = first.begin(); it != first.end(); it++)
         std::cout << *it << " ";
     std::cout << "\n\nfirst.pop_back(3):\n";
-    std::cout << "holaaaa" << std::endl;
-   // first.pop_back();
+
+ 
+    first.pop_back();
     for (ft::Vector<int>::iterator it = first.begin(); it != first.end(); it++)
         std::cout << *it << " ";
     std::cout << "\n\nfirst.insert(first.begin(), 2, 2):\n";

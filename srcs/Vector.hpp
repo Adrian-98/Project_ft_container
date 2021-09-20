@@ -6,15 +6,15 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 11:20:37 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/09/20 13:19:49 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/09/20 15:57:34 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_HPP
 #define VECTOR_HPP
 
-#include "VectorIterator.hpp"
-#include "Algorithm.hpp"
+#include "../srcs/VectorIterator.hpp"
+#include "../srcs/Algorithm.hpp"
 
 namespace ft
 {
@@ -49,12 +49,12 @@ namespace ft
                 _container(nullptr), _size(0), _capacity(0) {
                 insert(begin(), n, val);
                 }
-            
+
                 Vector(iterator first, iterator last):
                     _container(nullptr), _size(0), _capacity(0) {
                     insert(begin(), first, last);      
                 }
-                
+
                 Vector(const Vector& x):
                     _container(nullptr), _size(0), _capacity(0) {
                     this->_capacity = x._capacity;
@@ -63,7 +63,7 @@ namespace ft
                     for (size_t i = 0; i < this->_capacity; i++)
                         this->_container[i] = x._container[i];
                 }
-                
+
                 iterator begin() {
                 return iterator(this->_container);
                 }
@@ -194,58 +194,64 @@ namespace ft
                     erase(end() - 1);
                 }
 
-                iterator insert(iterator position, const value_type& val) {
+                iterator insert(iterator position, const value_type& val)
+                {
                     size_type init = 1;
-                    insert(position, init, val);
-                    return position;
+                    this->insert(position, init, val);
+                    return ++position;
                 }
 
-                void insert (iterator position, size_type n, const value_type& val){
-                    if (!n)
-                        return ;
-                        
-                    size_type index = 0;
+                void insert(iterator position, size_type n, const value_type& val)
+                {
                     iterator it = this->begin();
-                    while (it != position){
-                        it++;
-                        index++;
-                    }
-                    if (_size + n > _capacity){
-                        reserve(_size + n);
-                        std::allocator<T> alloc;
-                        for (ptrdiff_t i = _size - 1; i >= (ptrdiff_t)index; i--)
-                        {
-                            alloc.construct(&_container[i + n], _container[i]);
-                            alloc.destroy(&_container[i]);
-                        }
-                        for (size_type i = index; i < index + n; i++)
-                            alloc.construct(&_container[i], val);
-                        _size += n;
-                    }
-                }
-
-                void insert (iterator position, iterator first, iterator last){
-                    iterator it = this->begin();
-                    size_type n = last - first;
-                    size_type index = 0;
+                    difference_type index = 0;
                     
-                    while (it != position) {
+                    while (it != position)
+                    {
                         ++it;
                         ++index;
                     }
                     if (!n)
                         return ;
                     if (_size + n > _capacity)
-                        reserve(_size + n);
-                    std::allocator<T> alloc;
-                    for (ptrdiff_t i = _size - 1; i >= (ptrdiff_t)index; i--)
+                        this->reserve(_size + n);
+                    std::allocator<T> _alloc;
+                    for (ptrdiff_t i = _size - 1; i >= (ptrdiff_t)index;  i--)
                     {
-                        alloc.construct(&_container[i + n], _container[i]);
-                        alloc.destroy(&_container[i]);
+                        _alloc.construct(&_container[i + n], _container[i]);
+                        _alloc.destroy(&_container[i]);
                     }
-                    for (iterator ite = first; ite != last; ++ite)
-                        alloc.construct(&_container[index++], *ite);
-                    _size += n;
+                    for (size_type i = index; i < index + n; i++)
+                        _alloc.construct(&_container[i], val);
+                    _size +=  n;
+                }
+                
+                template <class InputIterator>
+                void insert (iterator position, InputIterator first, InputIterator last,
+                typename std::enable_if<!std::numeric_limits<InputIterator>::is_specialized>::type *_if = 0)
+                {
+                    iterator it = this->begin();
+                    size_type index = 0;
+                    size_type n = last - first;
+                    
+                    if (_size + n > _capacity)
+                        this->reserve(n + _size);
+                    while (it != position)
+                    {
+                        ++it;
+                        ++index;
+                    }
+                    if (!n)
+                        return ;
+                    std::allocator<T> _alloc;
+                    for (ptrdiff_t i = _size - 1; i >= (ptrdiff_t)index;  i--)
+                    {
+                        _alloc.construct(&_container[i + n], _container[i]);
+                        _alloc.destroy(&_container[i]);
+                    }
+                    for (iterator it2 = first; it2 != last; it2++)
+                            _alloc.construct(&_container[index++], *it2);
+                    _size = _size + n;
                 }
 
                 iterator erase (iterator position){
