@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 17:59:21 by adrian            #+#    #+#             */
-/*   Updated: 2021/09/24 13:34:46 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/09/24 17:40:44 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,26 +71,45 @@ class Node
 				if (height(node->right) - height(node->left) == 2){
 					if (height(node->right->right) - height(node->right->left) == 1)
 						node = left_rotation(node);
-					else if(height(node->right->right) - height(node->right->left) == -1)
+					else if (height(node->right->right) - height(node->right->left) == -1)
 						node = right_left_rotation(node);
 				}
 				else {
 					if (height(node->right->right) - height(node->right->left) == 1)
 						node = left_right_rotation(node);
-					else if(height(node->right->right) - height(node->right->left) == -1)
+					else if (height(node->right->right) - height(node->right->left) == -1)
 						node = right_rotation(node);
 				}
-				
-				
+				if (tmparent == NULL)
+					*root = node;
+				else {
+					if (is_right == true)
+						tmparent->right = node;
+					else
+						tmparent->left = node;
+				}
+				node->parent = tmparent;				
 			}
 
+			Node<T> *left_rotate(Node<T> *node){
+				Node<T> *tmp = node->right;
+				node->right = tmp->left;
+				tmp->left = node;
+				node->parent = tmp;
+				if (node->right)
+					node->right->parent = node;
+				return tmp; 
+			}
 			
-
-			
-
-
-
-
+			Node<T> *right_rotate(Node<T> *node){
+				Node<T> *tmp = node->left;
+				node->left = tmp->right;
+				tmp->right = node;
+				node->parent = tmp;
+				if (node->left)
+					node->left->parent = node;
+				return tmp; 
+			}
 			
 			// Node *getright(void){
 			// 	return (this->right);
