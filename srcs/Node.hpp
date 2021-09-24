@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Node.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 17:59:21 by adrian            #+#    #+#             */
-/*   Updated: 2021/09/23 18:19:10 by adrian           ###   ########.fr       */
+/*   Updated: 2021/09/24 13:34:46 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define NODE_HPP
 
 # include <limits>
+#include "Vector.hpp"
 
 
 template <typename T>
@@ -27,7 +28,7 @@ class Node
 			Node<T> *parent;
 	public:
 			Node() :data(NULL), right(nullptr), left(nullptr), parent(NULL){}
-			Node(const T& data) : right(nullptr), left(nullptr), data(data), parent(NULL) {}
+			Node(const T& data) : data(data), right(nullptr), left(nullptr), parent(NULL) {}
 			
 			Node(Node const &copy) : right(copy.right), left(copy.left), data(copy.data), parent(copy.parent){}
 			Node &operator=(Node const &copy)
@@ -41,16 +42,49 @@ class Node
 			
 			virtual ~Node(){}
 			
-			int Height (node *root)
+			int height (node *root)
 			{
 				if (root == NULL)
 					return -1;
 					
-				int left = findHeight (root->left); 
-				int right = findHeight (root->right); 
+				int left = height (root->left); 
+				int right = height (root->right); 
 
 				return 1 + max (left, right); 
 			}
+
+			void checkbalance(Node<T> *node, Node<T> **root)
+			{
+				if (height(node->right) - height(node->left) > 1 || height(node->right) - height(node->left)  < -1)
+					balance(node, root);
+				if (this->parent == NULL)
+					return;
+				checkbalance(this->parent, root);
+			}
+
+			void balance(Node<T> *node, Node<T> **root)
+			{
+				bool is_right;
+				Node<T> *tmparent = node->parent;
+				if (node->parent != NULL)
+					is_right = node->parent->right == node; //see which bran we are at;
+				if (height(node->right) - height(node->left) == 2){
+					if (height(node->right->right) - height(node->right->left) == 1)
+						node = left_rotation(node);
+					else if(height(node->right->right) - height(node->right->left) == -1)
+						node = right_left_rotation(node);
+				}
+				else {
+					if (height(node->right->right) - height(node->right->left) == 1)
+						node = left_right_rotation(node);
+					else if(height(node->right->right) - height(node->right->left) == -1)
+						node = right_rotation(node);
+				}
+				
+				
+			}
+
+			
 
 			
 
