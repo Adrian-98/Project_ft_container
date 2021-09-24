@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 17:59:21 by adrian            #+#    #+#             */
-/*   Updated: 2021/09/24 17:40:44 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/09/24 18:04:32 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ class Node
 				Node<T> *tmp = node->right;
 				node->right = tmp->left;
 				tmp->left = node;
+				tmp->parent = node->parent;
 				node->parent = tmp;
 				if (node->right)
 					node->right->parent = node;
@@ -105,12 +106,22 @@ class Node
 				Node<T> *tmp = node->left;
 				node->left = tmp->right;
 				tmp->right = node;
+				tmp->parent = node->parent;
 				node->parent = tmp;
 				if (node->left)
 					node->left->parent = node;
 				return tmp; 
 			}
 			
+			Node<T> *right_left_rotate(Node<T> * node) {
+				node->right = right_rotate(node->right);
+				return left_rotate(node);
+			}
+
+			Node<T> *left_right_rotate(Node<T> * node) {
+				node->left = left_rotate(node->left);
+				return right_rotate(node);
+			}
 			// Node *getright(void){
 			// 	return (this->right);
 			// }
