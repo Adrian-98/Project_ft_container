@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 17:59:21 by adrian            #+#    #+#             */
-/*   Updated: 2021/09/24 18:04:32 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/09/24 18:06:04 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,32 +121,7 @@ class Node
 			Node<T> *left_right_rotate(Node<T> * node) {
 				node->left = left_rotate(node->left);
 				return right_rotate(node);
-			}
-			// Node *getright(void){
-			// 	return (this->right);
-			// }
-			// Node *getleft(void){
-			// 	return (this->left);
-			// }
-			// T &getvalue(void) {
-			// 	return (this->value);
-			// }
-			// T const &getvalue(void) const {
-			// 	return (this->value);
-			// }
-			// void setright(Node *right){
-			// 	this->right = right;
-			// }
-			// void setleft(Node *left){
-			// 	this->left = left;
-			// }
-			// void setValue(T &value){
-			// 	this->value = value;
-			// }
-			// Node *clone_whit_value(void){
-			// 	return (new Node(NULL, NULL, this->value));
-			// }
-			
+			}			
 };
 
 #endif
