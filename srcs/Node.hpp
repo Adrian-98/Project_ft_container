@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 17:59:21 by adrian            #+#    #+#             */
-/*   Updated: 2021/09/24 18:06:04 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/09/28 13:34:46 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <limits>
 #include "Vector.hpp"
+#include "Pair.hpp"
 
 
 template <typename T>

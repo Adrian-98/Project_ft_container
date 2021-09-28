@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 16:03:50 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/09/27 17:51:55 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/09/28 13:17:46 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include "Node.hpp"
 #include <iterator>
-#include <utility>
+#include "Pair.hpp"
 
 template <typename Key, typename Value>
 
