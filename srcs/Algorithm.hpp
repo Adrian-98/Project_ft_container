@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 19:01:39 by ncolomer          #+#    #+#             */
-/*   Updated: 2021/09/28 16:50:05 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/09/28 17:24:32 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,13 @@ namespace ft
 	bool less_than(value_type const &a, value_type const &b) {
 		return (a < b);
 	}
+
+	template <class Key>
+	struct less : std::binary_function <Key,Key,bool> {
+		bool operator() (const Key & x, const Key & y) const {
+			return (x < y);
+		}
+	};
 
 	template<class value_type>
 	bool more_than(value_type const &a, value_type const &b) {
