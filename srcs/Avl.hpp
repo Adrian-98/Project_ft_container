@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:16:23 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/09/28 18:42:42 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/09/28 19:21:04 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ class Avl{
                 return NULL;
             if (root != end && root->data.first = hint)
                 return root;
-            if (root == end || Compare()(val, root->data.first)) {
+            if (root == end || Compare()(hint, root->data.first)) {
                 if (root->left)
                     find_r(root->left, hint);
                 return NULL;
