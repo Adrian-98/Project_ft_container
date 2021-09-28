@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:16:23 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/09/28 18:40:35 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/09/28 18:42:42 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,9 +193,74 @@ class Avl{
                 node = node->right;
             return node;
         }
+        
+        void print_set(int floor, int index, int height, Node<ft::pair<Key, Value> > * node) {
+            for(int x = 0; x < pow(2, height - floor - 1) - 1; x++)
+                std::cout << " ";
+            int v = 2;
+            for (int x = pow(2, floor - 1) ; x > 0; x/=2) {
+                if (node != NULL && index / x == 0) {
+                        node = node->left;
+                }
+                else if (node != NULL){
+                    index -= x;
+                    node = node->right;
+                }
+            }
+            if (node != NULL)
+                std::cout << node->data.first;
+            else
+                std::cout << "_";
+            for(int x = 0; x < pow(2, height - floor - 1) - 1; x++)
+                std::cout << " ";
+        }
 
-        
-        
+        void print_r(Node<ft::pair<Key, Value> > *node, int floor, int height) {
+            for (int x = 0; x < pow(2, floor); x++) {
+                print_set(floor, x, height, node);
+                if (x != pow(2, floor) - 1)
+                std::cout << ".";
+            }
+            if (floor == height - 1)
+                return;
+            std::cout << std::endl;
+
+            print_r(node, floor + 1, height);
+        }
+
+        void print() {
+            std::cout << std::endl;
+            print_r(root, 0, root->height(root));
+            std::cout << std::endl;
+        }
+
+        bool is_null(Node<ft::pair<Key, Value> > *node) {
+            return (node == NULL || node == end || node == rend);
+        }
+
+        Node<ft::pair<Key, Value> > * get_begin() {
+            if (size == 0)
+                return end;
+            if (rend->right)
+                return rend->right;
+            return rend->parent;
+        }
+
+        Node<ft::pair<Key, Value> > * get_rbegin() {
+            if (size == 0)
+                return rend;
+            if (end->left)
+                return end->left;
+            return end->parent;
+        }
+
+        Node<ft::pair<Key, Value> > * get_end() {
+            return end;
+        }
+
+        Node<ft::pair<Key, Value> > * get_rend() {
+            return rend;
+        }       
 };
 
 
