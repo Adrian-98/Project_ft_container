@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:16:23 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/09/28 17:31:57 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/09/28 18:40:35 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 
 
-template <typename Key, typename T, class Alloc, class Compare = ft::less<Key> >
+template <typename Key, typename Value, class Alloc, class Compare = ft::less<Key> >
 
 class Avl{
     
@@ -82,9 +82,9 @@ class Avl{
 
         void add(Node<ft::pair<Key, Value> > *parent, Node<ft::pair<Key, Value> > * newNode)
         {
-            if (!Compare()(parent.first, newNode.first) && !Compare()(newNode.first, parent.first)) //all keys must be unique 
+            if (!Compare()(parent->data.first, newNode->data.first) && !Compare()(newNode->data.first, parent->data.first)) //all keys must be unique 
                 return;
-            else if (parent == rend || (parent != end && Compare()(parent.first, newNode.first))){  //Revisar si parent.first ó parent->data.first(posible error)
+            else if (parent == rend || (parent != end && Compare()(parent->data.first, newNode->data.first))){  //Revisar si parent.first ó parent->data.first(posible error)
                 if (parent->right == NULL){
                     parent->right = newNode;
                     newNode->parent = parent;
@@ -104,6 +104,98 @@ class Avl{
             }
             root->checkbalance(parent, &root); 
         }
+
+        Node<ft::pair<Key, Value> > *find(Key hint){
+            return find_r(root, hint);
+        }
+        
+        Node<ft::pair<Key, Value> > *find(Node<ft::pair<Key, Value> *root, Key hint)
+        {
+            if (root == NULL)
+                return NULL;
+            if (root != end && root->data.first = hint)
+                return root;
+            if (root == end || Compare()(val, root->data.first)) {
+                if (root->left)
+                    find_r(root->left, hint);
+                return NULL;
+            }
+            else{
+                if (root->right)
+                    find_r(root->right, hint);
+                return NULL;
+            }
+        }
+
+        void remove(Node<ft::pair<Key, Value> > *node){
+            Node<ft::pair<Key, Value> > *tmparent = node->parent;
+            if (node->right == NULL && node->left == NULL){
+                if (tmparent->right == node)
+                    tmparent->right == NULL;
+                else 
+                    tmparent->left = NULL;
+                _node_alloc.destroy(node);
+                _node_alloc.deallocate(node, 1);
+                tmparent->checkbalance(tmparent, &root);
+                size--;
+                return ;
+            }
+            else if (node->right == NULL)
+            {
+                if (tmparent->right == node){
+                    tmparent->right = node->left;
+                    node->left->parent = tmparent;
+                }
+                else{
+                    tmparent->left = node->left;
+                    node->left->parent = tmparent;
+                }
+                _node_alloc.destroy(node);
+                _node_deallocate(node, 1);
+                tmparent->checkbalance(tmparent, &root);
+                size--;
+                return;
+            }
+            else if (node->left == NULL){
+                if (tmparent->right == node){
+                    tmparent->right = node->left;
+                    node->left->parent = tmparent;
+                }
+                else{
+                    tmparent->left = node->left;
+                    node->left->parent = tmparent;
+                }
+                _node_alloc.destroy(node);
+                _node_deallocate(node, 1);
+                tmparent->checkbalance(tmparent, &root);
+                size--;
+                return;
+            }
+            Node<ft::pair<Key, Value> > *iop = in_order_predecessor(node);
+            int i = 0;
+            if (iop == end)
+                i = 1;
+            else if (iop == rend)
+                i = 2;
+            node->data = iop->data;
+            remove(iop);
+            if (i == 1)
+                end = node;
+            if (i == 2)
+                rend = node;            
+        }
+
+        Node<ft::pair<Key, Value> > *in_order_predecessor(Node<ft::pair<Key, Value> > *node){
+            if (node->left == NULL)
+                return NULL;
+            node = node->left;
+            while (node->right)
+                node = node->right;
+            return node;
+        }
+
+        
+        
 };
 
 
