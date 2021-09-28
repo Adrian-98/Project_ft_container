@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:16:23 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/09/28 14:02:32 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/09/28 16:54:57 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,16 @@
 #define AVL_HPP
 
 #include "Node.hpp"
+#include "Algorithm.hpp"
 #include "MapIterator.hpp"
+#include <memory>
+#include <cstddef>
+#include <limits.h>
+#include <stdexcept>
 
-template<class Key, class Value, class Compare, class Alloc>
+
+
+template <typename Key, typename T, class Compare, class Alloc>
 
 class Avl{
     
@@ -75,10 +82,27 @@ class Avl{
 
         void add(Node<ft::pair<Key, Value> > *parent, Node<ft::pair<Key, Value> > * newNode)
         {
-            if (parent == rend || (parent != end && Compare()(parent.first, newNode.first))){
-                if 
+            if (!Compare()(parent.first, newNode.first) && ! Compare()(newNode.first, parent.first))
+                return;
+            if (parent == rend || (parent != end && Compare()(parent.first, newNode.first))){  //Revisar si parent.first ó parent->data.first(posible error)
+                if (parent->right == NULL){
+                    parent->right = newNode;
+                    newNode->parent = parent;
+                    size++;
+                }
+                else
+                    add(parent->right, newNode);
             }
-            
+            else{
+                if (parent->left == NULL){
+                    parent->left = newNode;
+                    newNode->parent = parent;
+                    size++;
+                }
+                else
+                    add(parent->left, newNode);
+            }
+            root->checkbalance(parent, &root); 
         }
 };
 

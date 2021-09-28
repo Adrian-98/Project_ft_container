@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 17:59:21 by adrian            #+#    #+#             */
-/*   Updated: 2021/09/28 13:34:46 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/09/28 16:29:20 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ class Node
 				bool is_right;
 				Node<T> *tmparent = node->parent;
 				if (node->parent != NULL)
-					is_right = node->parent->right == node; //see which bran we are at;
+					is_right = node->parent->right == node; //see which branch we are at;
 				if (height(node->right) - height(node->left) == 2){
 					if (height(node->right->right) - height(node->right->left) == 1)
 						node = left_rotation(node);
