@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 19:01:39 by ncolomer          #+#    #+#             */
-/*   Updated: 2021/09/28 17:24:32 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/09/29 15:46:18 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,6 @@ namespace ft
 		}
 		return (first2 != last2);
 	}
-
-	template<typename T>
-	struct less: public std::binary_function<T, T, bool>
-	{
-		bool operator()(const T& x, const T& y) const {
-			return (x < y);
-		}
-	};
 
 	template<class value_type>
 	value_type const &min(value_type const &a, value_type const &b) {
