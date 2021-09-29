@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 17:42:14 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/09/29 18:02:59 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/09/29 19:04:53 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,6 +208,35 @@ class Map{
 				return (value_compare(Compare()));
 			}
 
+			
+			iterator lower_bound (const key_type& k){
+				Map::iterator it = begin();
+				while (it != end() && !key_compare()(k, (*it).first))
+					it++;
+				return it;
+			}
+			
+			const_iterator lower_bound (const key_type& k) const {
+				Map::const_iterator it = begin();
+				while (it != end() && !key_compare()(k, (*it).first))
+					it++;
+				return (it);
+			}
+
+			iterator upper_bound(const key_type& k) {
+				Map::iterator it = begin();
+				while (it != end() && !key_compare()(k, (*it).first))
+					it++;
+				return (it);
+			}
+
+			const_iterator upper_bound(const key_type& k) const{
+				Map::const_iterator it = begin();
+				while (it != end() && !key_compare()(k, (*it).first))
+					it++;
+				return (it);
+			}
+			
 			//find
 			iterator find (const key_type& k) {
 				Node<ft::pair<Key, T> > *node = _storage->find(k);
