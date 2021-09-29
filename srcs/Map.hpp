@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 17:42:14 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/09/29 19:04:53 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/09/29 19:06:22 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -251,7 +251,17 @@ class Map{
 					return end();
 				return const_iterator(node);
 			}
+			
 
+			pair<const_iterator,const_iterator> equal_range (const key_type& k) const {
+				pair<const_iterator, const_iterator> pair(lower_bound(k), upper_bound(k));
+				return pair;
+			}
+
+			pair<iterator,iterator>             equal_range (const key_type& k) {
+				pair<iterator, iterator> pair(lower_bound(k), upper_bound(k));
+				return pair;
+			}
 
 			iterator 			begin(){
 				return (iterator(_storage->get_begin()));
@@ -285,7 +295,9 @@ class Map{
 				return (const_reverse_iterator(_storage->get_rend()));
 			}
 
-				
+			Node<ft::pair<Key, T> > *get_node(iterator it) {
+				return (_storage->find((*it).first));
+			}				
 };
 
 		template <typename Key,typename T, class Alloc>
