@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 17:42:14 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/09/29 16:21:44 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/09/29 16:57:42 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ class Map{
 				_tree_alloc.construct(_storage);
 				while (first != last)
 				{
-					_storage.add((*first).first, ((*first).second));
+					_storage->add((*first).first, ((*first).second));
 					first++;
 				}
 			}
@@ -72,7 +72,7 @@ class Map{
 				_tree_alloc.construct(_storage);
 				while (it != src.end())
 				{
-					_storage.add((*it).first, (*it).second);
+					_storage->add((*it).first, (*it).second);
 					it++;
 				}
 			}
@@ -80,8 +80,22 @@ class Map{
 			~Map(){
 				_tree_alloc.destroy(_storage);
 				_tree_alloc.deallocate(_storage, 1);
-				
 			}
+
+			Map	&operator=(const map &x) {
+				_tree_alloc.destroy(_storage);
+				_tree_alloc.deallocate(_storage, 1);
+				Map::iterator it = x.begin();
+				_tree_alloc.allocate(1);
+				_tree_alloc.construct(_storage);
+				while (it != x.end()){
+					_storage->add((*it).first, (*it).second);
+					it++;
+				}
+				return *this;
+			}
+
+			
 };
 
 
