@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 17:42:14 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/09/29 17:33:42 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/09/29 18:02:59 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,11 +148,81 @@ class Map{
 				}
 			}
 
+			void	erase(iterator position){
+				_storage->remove(get_node(position));
+			}
 
+			size_type erase(const key_type& k){
+				Node<ft::pair<Key, T> > * node = _storage->find(k);
+				if (!node)
+					return 0;
+				_storage->remove(node);
+				return 1;	
+			}
 
+			void	erase(iterator first, iterator last){
+				while (first != last){
+					Node<ft::pair<Key, T> > * node = get_node(first));
+					first++;
+					_storage->remove(node);
+				}
+			}
 
+			void	swap (map& x) {
+				Avl<Key, T, Alloc, Compare> * tmp = _storage;
+				_storage = x._storage;
+				x._storage = tmp;
+			}
 
 			
+			void	clear() {
+				Map::iterator it = begin();
+				while (it != end()) {
+					Node<ft::pair<Key, T> > *node = get_node(it);
+					it++;
+					_storage->remove(node);
+				}
+			}
+
+			key_compare key_comp() const{
+				return Compare();
+			}
+
+			class value_compare
+			{   // in C++98, it is required to inherit binary_function<value_type,value_type,bool>
+				friend class Map;
+				protected:
+					Compare comp;
+					value_compare (Compare c) : comp(c) {}  // constructed with map's comparison object
+				public:
+					typedef bool result_type;
+					typedef value_type first_argument_type;
+					typedef value_type second_argument_type;
+					bool operator() (const value_type& x, const value_type& y) const
+					{
+						return comp(x.first, y.first);
+					}
+			};
+
+			value_compare value_comp() const{
+				return (value_compare(Compare()));
+			}
+
+			//find
+			iterator find (const key_type& k) {
+				Node<ft::pair<Key, T> > *node = _storage->find(k);
+				if (node == NULL)
+					return end();
+				return iterator(node);
+			}
+
+			const_iterator find (const key_type& k) const {
+				Node<ft::pair<Key, T> > *node = _storage->find(k);
+				if (node == NULL)
+					return end();
+				return const_iterator(node);
+			}
+
 
 			iterator 			begin(){
 				return (iterator(_storage->get_begin()));
@@ -189,7 +259,10 @@ class Map{
 				
 };
 
-
+		template <typename Key,typename T, class Alloc>
+		void swap(Map<Key,T, Alloc> & x, Map<Key,T, Alloc> & y) {
+			x.swap(y);
+		}
 
 
 
