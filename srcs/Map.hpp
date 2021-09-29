@@ -6,7 +6,7 @@
 /*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 17:42:14 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/09/29 16:57:42 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/09/29 17:33:42 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,98 @@ class Map{
 				return *this;
 			}
 
+			bool  empty() const{
+				return (_storage->size == 0);
+			}
 			
+			size_type	size() const {
+				return (_storage->size);
+			}
+		
+			size_type	max_size() const {
+				return (allocator_type().max_size()/5);
+			}
+
+			mapped_type &operator[] (const key_type& k) {
+				if (count(k) == 0)
+					_storage->add(k, T());					//PARRENTESIS EN  LA T?¿
+				Node<ft::pair<Key, T> > *node = _storage->find(k);
+				return node->data.second;
+			}	
+
+			size_type count (const key_type& k) const {
+				Node<ft::pair<Key, T> > *node = _storage->find(k);
+				if (node == NULL)
+					return 0;
+				return 1;
+			}
+
+			iterator insert (iterator position, const value_type& val){
+				_storage->add(val.first, val.second, get_node(position));
+				return insert(val).first;
+			}
+
+			ft::pair<iterator,bool>			insert(const value_type& val) {
+				Node<ft::pair<Key, T> > * nd = _storage->find(val.first);
+				if (nd != NULL) {
+					ft::pair<iterator,bool> pr = ft::make_pair(iterator(nd), false);
+					return pr;
+				}
+				nd = _storage->add(val.first, val.second);
+				iterator it = iterator(nd);
+				ft::pair<iterator,bool> pr = ft::make_pair(it, true);
+				return pr;
+			}
+
+			template <class InputIterator>
+			void insert (InputIterator first, InputIterator last) {
+				while (first != last)
+				{
+					value_type val = value_type((*first).first, (*first).second);
+					insert(val);
+					first++;
+				}
+			}
+
+
+
+
+
+			
+
+			iterator 			begin(){
+				return (iterator(_storage->get_begin()));
+			}
+			
+			const_iterator		begin() const {
+				return (const_iterator(_storage->get_begin()));
+			}
+
+			iterator				end() {
+				return (iterator(_storage->get_end()));
+			}
+
+			const_iterator			end() const {
+				return (const_iterator(_storage->get_end()));
+			}
+
+			reverse_iterator		rbegin() {
+				return (reverse_iterator(_storage->get_rbegin()));
+			}
+
+			const_reverse_iterator	rbegin() const {
+				return (const_reverse_iterator(_storage->get_rbegin()));
+			}
+
+			reverse_iterator		rend() {
+				return (reverse_iterator(_storage->get_rend()));
+			}
+
+			const_reverse_iterator	rend() const {
+				return (const_reverse_iterator(_storage->get_rend()));
+			}
+
+				
 };
 
 
