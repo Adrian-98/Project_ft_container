@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Avl.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:16:23 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/09/29 18:55:24 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/10/04 13:49:00 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 
 
-template <typename Key, typename Value, class Alloc, class Compare = ft::less<Key> >
+template<class Key, class Value, class Compare, class Alloc>
 
 class Avl{
     
@@ -109,11 +109,11 @@ class Avl{
             return find_r(root, hint);
         }
         
-        Node<ft::pair<Key, Value> > *find(Node<ft::pair<Key, Value> *root, Key hint)
+        Node<ft::pair<Key, Value> > *find_r(Node<ft::pair<Key, Value> > *root, Key hint)
         {
             if (root == NULL)
                 return NULL;
-            if (root != end && root->data.first = hint)
+            if (root != end && root->data.first == hint)
                 return root;
             if (root == end || Compare()(hint, root->data.first)) {
                 if (root->left)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MapIterator.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 16:03:50 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/09/28 13:17:46 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/10/04 13:31:45 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <iterator>
 #include "Pair.hpp"
 
+typedef size_t size_type;
 template <typename Key, typename Value>
 
 class MapIterator : public std::iterator<std::input_iterator_tag, Key, Value>

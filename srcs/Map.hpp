@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Map.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 17:42:14 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/09/29 19:06:22 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/10/04 14:04:47 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,27 @@
 #include "MapIterator.hpp"
 #include "Node.hpp"
 #include "Avl.hpp"
+#include <cstddef>
+#include <limits.h>
+#include <stdexcept>
+#include "MapIterator.hpp"
+#include <memory>
 
-template <typename Key, typename T, class Alloc, class Compare = ft::less<Key> >
+template <typename Key, typename T, class Compare = ft::less<Key>, class Alloc = std::allocator<std::pair<Key, T> > >
 		   
 
 class Map{
 		private:
-			typedef typename Alloc::template rebind<Node<ft::pair<Key, T> > >::other Tree_allocator_type;
+			typedef typename Alloc::template rebind<AVL<Key, T, Compare, Alloc> >::other Tree_allocator_type;
 			
-			Avl<Key, T, Alloc, Compare> *_storage;
+			Avl<Key, T, Compare, Alloc> *_storage;
 			Tree_allocator_type 		_tree_alloc;
 
 		public:
 		
 			typedef	Key										key_type;
-			typedef T										mapped_type;
-			typedef	ft::pair<const key_type, mapped_type>		value_type;
+			typedef T										Mapped_type;
+			typedef	ft::pair<const key_type, Mapped_type>		value_type;
 			typedef	Compare									key_compare;
 			typedef value_type&								reference;
 			typedef const value_type&						const_reference;
@@ -64,13 +69,13 @@ class Map{
 				}
 			}
 			
-			Map(const map& x)
+			Map(const Map& x)
 			{
 				iterator it = x.begin();
 				_tree_alloc = Tree_allocator_type();
 				_storage = _tree_alloc.allocate(1);
 				_tree_alloc.construct(_storage);
-				while (it != src.end())
+				while (it != x.end())
 				{
 					_storage->add((*it).first, (*it).second);
 					it++;
@@ -82,7 +87,7 @@ class Map{
 				_tree_alloc.deallocate(_storage, 1);
 			}
 
-			Map	&operator=(const map &x) {
+			Map	&operator=(const Map &x) {
 				_tree_alloc.destroy(_storage);
 				_tree_alloc.deallocate(_storage, 1);
 				Map::iterator it = x.begin();
@@ -107,7 +112,7 @@ class Map{
 				return (allocator_type().max_size()/5);
 			}
 
-			mapped_type &operator[] (const key_type& k) {
+			Mapped_type &operator[] (const key_type& k) {
 				if (count(k) == 0)
 					_storage->add(k, T());					//PARRENTESIS EN  LA T?¿
 				Node<ft::pair<Key, T> > *node = _storage->find(k);
@@ -162,13 +167,13 @@ class Map{
 
 			void	erase(iterator first, iterator last){
 				while (first != last){
-					Node<ft::pair<Key, T> > * node = get_node(first));
+					Node<ft::pair<Key, T> > * node = get_node(first);
 					first++;
 					_storage->remove(node);
 				}
 			}
 
-			void	swap (map& x) {
+			void	swap (Map& x) {
 				Avl<Key, T, Alloc, Compare> * tmp = _storage;
 				_storage = x._storage;
 				x._storage = tmp;
@@ -193,7 +198,7 @@ class Map{
 				friend class Map;
 				protected:
 					Compare comp;
-					value_compare (Compare c) : comp(c) {}  // constructed with map's comparison object
+					value_compare (Compare c) : comp(c) {}  // constructed with Map's comparison object
 				public:
 					typedef bool result_type;
 					typedef value_type first_argument_type;
@@ -253,13 +258,13 @@ class Map{
 			}
 			
 
-			pair<const_iterator,const_iterator> equal_range (const key_type& k) const {
-				pair<const_iterator, const_iterator> pair(lower_bound(k), upper_bound(k));
+			ft::pair<const_iterator,const_iterator> equal_range (const key_type& k) const {
+				ft::pair<const_iterator, const_iterator> pair(lower_bound(k), upper_bound(k));
 				return pair;
 			}
 
-			pair<iterator,iterator>             equal_range (const key_type& k) {
-				pair<iterator, iterator> pair(lower_bound(k), upper_bound(k));
+			ft::pair<iterator,iterator>             equal_range (const key_type& k) {
+				ft::pair<iterator, iterator> pair(lower_bound(k), upper_bound(k));
 				return pair;
 			}
 

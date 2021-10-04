@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Node.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 17:59:21 by adrian            #+#    #+#             */
-/*   Updated: 2021/09/28 16:29:20 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/10/04 13:30:26 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ class Node
 			
 			virtual ~Node(){}
 			
-			int height (node *root)
+			int height (Node *root)
 			{
 				if (root == NULL)
 					return -1;
@@ -51,7 +51,7 @@ class Node
 				int left = height (root->left); 
 				int right = height (root->right); 
 
-				return 1 + max (left, right); 
+				return 1 + ft::max (left, right); 
 			}
 
 			void checkbalance(Node<T> *node, Node<T> **root)

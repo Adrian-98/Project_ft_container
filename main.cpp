@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 12:49:58 by adrian            #+#    #+#             */
-/*   Updated: 2021/09/20 17:41:02 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/10/04 13:57:59 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include <set>
 #include "srcs/Algorithm.hpp"
 #include "srcs/Stack.hpp"
+#include "srcs/Map.hpp"
+
 
 void test_stack()
 {
@@ -197,6 +199,136 @@ void test_vector()
     for (ft::Vector<int>::iterator it = first.begin(); it != first.end(); it++)
         std::cout << *it << " ";
     std::cout << "\n";
+}
+
+
+void ft_Map01(){
+    
+    Map<char,int> Map1;
+
+	std::cout << "===Map===" << std::endl;
+	std::cout << "===Constructors===" << std::endl;
+	std::cout << "___default constructor___" << std::endl;
+
+	std::cout << "size : " << Map1.size() << std::endl;
+	std::cout << "empty ? : " << Map1.empty() << std::endl;
+	std::cout << "normal :" << std::endl;
+	Map<char, int>::iterator it = Map1.begin();
+	while (it != Map1.end())
+	{
+		ft::pair<char, int> pr = *it;
+		std::cout << pr.first << " | " << pr.second << std::endl;
+		it++;
+	}
+	std::cout << "reverse :" << std::endl;
+
+	Map<char, int>::reverse_iterator ite = Map1.rbegin();
+	while (ite != Map1.rend())
+	{
+		ft::pair<char, int> pr = *ite;
+		std::cout << pr.first << " | " << pr.second << std::endl;
+		ite++;
+	}
+
+	std::cout << "___manual fill___" << std::endl;
+
+	Map1['a'] = 75;
+	Map1['z'] = 32;
+	Map1['e'] = 42;
+
+	std::cout << "size : " << Map1.size() << std::endl;
+	std::cout << "empty ? : " << Map1.empty() << std::endl;
+	std::cout << "normal :" << std::endl;
+	it = Map1.begin();
+	while (it != Map1.end())
+	{
+		ft::pair<char, int> pr = *it;
+		std::cout << pr.first << " | " << pr.second << std::endl;
+		it++;
+	}
+	std::cout << "reverse :" << std::endl;
+
+	ite = Map1.rbegin();
+	while (ite != Map1.rend())
+	{
+		ft::pair<char, int> pr = *ite;
+		std::cout << pr.first << " | " << pr.second << std::endl;
+		ite++;
+	}
+
+	std::cout << "___range constructor___" << std::endl;
+
+	Map<char,int> Map2(Map1.begin(), Map1.begin());
+
+	std::cout << "size : " << Map2.size() << std::endl;
+	std::cout << "empty ? : " << Map2.empty() << std::endl;
+	std::cout << "normal :" << std::endl;
+	it = Map2.begin();
+	while (it != Map2.end())
+	{
+		ft::pair<char, int> pr = *it;
+		std::cout << pr.first << " | " << pr.second << std::endl;
+		it++;
+	}
+	std::cout << "reverse :" << std::endl;
+
+	ite = Map2.rbegin();
+	while (ite != Map2.rend())
+	{
+		ft::pair<char, int> pr = *ite;
+		std::cout << pr.first << " | " << pr.second << std::endl;
+		ite++;
+	}
+
+	std::cout << "___copy constructor___" << std::endl;
+
+	Map<char,int> Map3(Map1);
+
+	std::cout << "size : " << Map3.size() << std::endl;
+	std::cout << "empty ? : " << Map3.empty() << std::endl;
+	std::cout << "normal :" << std::endl;
+	it = Map3.begin();
+	while (it != Map3.end())
+	{
+		ft::pair<char, int> pr = *it;
+		std::cout << pr.first << " | " << pr.second << std::endl;
+		it++;
+	}
+	std::cout << "reverse :" << std::endl;
+
+	ite = Map3.rbegin();
+	while (ite != Map3.rend())
+	{
+		ft::pair<char, int> pr = *ite;
+		std::cout << pr.first << " | " << pr.second << std::endl;
+		ite++;
+	}
+
+
+	std::cout << "___empty copy constructor___" << std::endl;
+
+	Map<char,int> Map4;
+	Map<char,int> Map5(Map4);
+
+	std::cout << "size : " << Map5.size() << std::endl;
+	std::cout << "empty ? : " << Map5.empty() << std::endl;
+	std::cout << "normal :" << std::endl;
+	it = Map5.begin();
+	while (it != Map5.end())
+	{
+		ft::pair<char, int> pr = *it;
+		std::cout << pr.first << " | " << pr.second << std::endl;
+		it++;
+	}
+	std::cout << "reverse :" << std::endl;
+
+	ite = Map5.rbegin();
+	while (ite != Map5.rend())
+	{
+		ft::pair<char, int> pr = *ite;
+		std::cout << pr.first << " | " << pr.second << std::endl;
+		ite++;
+	}
 }
 
 int main (void)
