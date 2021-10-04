@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 17:59:21 by adrian            #+#    #+#             */
-/*   Updated: 2021/10/04 13:30:26 by adrian           ###   ########.fr       */
+/*   Updated: 2021/10/04 18:50:48 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class Node
 			Node<T>	*left;
 			Node<T> *parent;
 	public:
-			Node() :data(NULL), right(nullptr), left(nullptr), parent(NULL){}
+			Node() : data(NULL), right(nullptr), left(nullptr), parent(NULL){}
 			Node(const T& data) : data(data), right(nullptr), left(nullptr), parent(NULL) {}
 			
 			Node(Node const &copy) : right(copy.right), left(copy.left), data(copy.data), parent(copy.parent){}

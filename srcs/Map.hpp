@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 17:42:14 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/10/04 14:04:47 by adrian           ###   ########.fr       */
+/*   Updated: 2021/10/04 18:51:08 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ template <typename Key, typename T, class Compare = ft::less<Key>, class Alloc =
 
 class Map{
 		private:
-			typedef typename Alloc::template rebind<AVL<Key, T, Compare, Alloc> >::other Tree_allocator_type;
+			typedef typename Alloc::template rebind<Avl<Key, T, Compare, Alloc> >::other Tree_allocator_type;
 			
 			Avl<Key, T, Compare, Alloc> *_storage;
 			Tree_allocator_type 		_tree_alloc;
 
 		public:
-		
+			
 			typedef	Key										key_type;
 			typedef T										Mapped_type;
 			typedef	ft::pair<const key_type, Mapped_type>		value_type;
