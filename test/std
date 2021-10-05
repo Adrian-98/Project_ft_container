@@ -1,0 +1,72 @@
+| VECTOR TEST |
+
+std::vector<int> second(4, 100):
+100 100 100 100 
+
+std::vector<int> third(second.begin(), --second.end()):
+100 100 100 
+
+std::vector<int> fourth(third):
+100 100 100 
+
+std::vector<int> fifth(5, 0); 
+fifth = third;
+100 100 100 
+
+std::vector<int> first; 
+first.insert(first.begin(), 1, 1);
+first.insert(first.end(), 1, 2);
+first.insert(first.end(), 1, 3);
+1 2 3 
+
+first.insert(first.begin(), 2, 2);
+2 2 1 2 3 
+
+std::vector<int> anothervector(2, 400);
+first.insert(first.begin(), anothervector.begin(), anothervector.end());
+400 400 2 2 1 2 3 
+
+std::vector<int> vec(2, 2);
+vec.insert(vec.begin(), 2, 3);
+normal vector : 3 3 2 2 
+reverse: 2 2 3 3 
+
+first.size(): 7
+first.max_size(): 4611686018427387903
+
+first.resize(9, 6): 
+400 400 2 2 1 2 3 6 6 
+
+first.capacity(): 16
+
+first is empty?
+not empty
+
+first.reserve(10); 
+first.capacity(): 16
+
+first[1]: 400
+
+first.at(2): 2
+
+first.front(): 400
+
+first.back(): 6
+
+first.assign(10, 5):
+5 5 5 5 5 5 5 5 5 5 
+
+first.push_back(3):
+5 5 5 5 5 5 5 5 5 5 3 
+
+first.pop_back(3):
+5 5 5 5 5 5 5 5 5 5 
+
+first.insert(first.begin(), 2, 2):
+2 2 5 5 5 5 5 5 5 5 5 5 
+
+first.erase(first.begin()): 
+2 5 5 5 5 5 5 5 5 5 5 
+
+first.swap(second): 
+100 100 100 100 
