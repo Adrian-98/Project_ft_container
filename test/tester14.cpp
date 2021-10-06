@@ -1,21 +1,17 @@
 #include <vector>
 #include <map>
 #include <iostream>
-#include "../Map/Map.hpp"
+#include "../srcs/Map.hpp"
 
-#ifdef STD
-using namespace std;
-#elif FT
 using namespace ft;
-#endif
 
 int main()
 {
-	map<char, int>				mmap;
+	Map<char, int>				mmap;
 
-  pair<map<char,int>::iterator,map<char,int>::iterator> ret = mmap.equal_range('b');
-	map<char, int>::iterator	itow = mmap.lower_bound ('b');  // itlow points to b
-	map<char, int>::iterator	itp = mmap.upper_bound ('d');   // itup points to e (not d!)
+  	pair<Map<char,int>::iterator,Map<char,int>::iterator> ret = mmap.equal_range('b');
+	Map<char, int>::iterator	itow = mmap.lower_bound ('b');  // itlow points to b
+	Map<char, int>::iterator	itp = mmap.upper_bound ('d');   // itup points to e (not d!)
 
 	mmap['a']=20;
 	itow = mmap.upper_bound ('b');
@@ -41,7 +37,7 @@ int main()
 
 	mmap.erase(itow,itp);        // erases [itlow,itup)
 
-	for (map<char,int>::iterator it = mmap.begin(); it != mmap.end(); ++it)
+	for (Map<char,int>::iterator it = mmap.begin(); it != mmap.end(); ++it)
 		std::cout << (*it).first << " => " << (*it).second << '\n';
 
 

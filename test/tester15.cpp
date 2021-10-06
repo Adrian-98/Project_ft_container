@@ -1,21 +1,17 @@
 #include <vector>
 #include <map>
 #include <iostream>
-#include "../Map/Map.hpp"
+#include "../srcs/Map.hpp"
 
-#ifdef STD
-using namespace std;
-#elif FT
 using namespace ft;
-#endif
 
 int main()
 {
-	map<int,int> map1;
-	map<int, int>::iterator it = map1.begin();
-	map<int, int>::reverse_iterator ite = map1.rbegin();
-	map<int,int> map4;
-	map<int,int> map5(map4);
+	Map<int,int> map1;
+	Map<int, int>::iterator it = map1.begin();
+	Map<int, int>::reverse_iterator ite = map1.rbegin();
+	Map<int,int> map4;
+	Map<int,int> map5(map4);
 
 	std::cout << "===MAX SIZE = " << map5.max_size() << " ===" << std::endl;
 
@@ -55,7 +51,7 @@ int main()
 	map5.insert(c);
 
 	pair<const int, int> d('f', 451);
-	map<int, int>::iterator  hint = map5.insert(c).first;
+	Map<int, int>::iterator  hint = map5.insert(c).first;
 	map5.insert(hint, d);
 
 	std::cout << "size : " << map5.size() << std::endl;

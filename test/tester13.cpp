@@ -1,21 +1,17 @@
 #include <vector>
 #include <map>
 #include <iostream>
-#include "../Map/Map.hpp"
+#include "../srcs/Map.hpp"
 
-#ifdef STD
-using namespace std;
-#elif FT
 using namespace ft;
-#endif
 
 int main()
 {
-	map<char,int> map1;
-	map<char, int>::iterator it = map1.begin();
-	map<char, int>::reverse_iterator ite = map1.rbegin();
-	map<char,int> map4;
-	map<char,int> map5(map4);	std::cout << "===Swap===" << std::endl;
+	Map<char,int> map1;
+	Map<char, int>::iterator it = map1.begin();
+	Map<char, int>::reverse_iterator ite = map1.rbegin();
+	Map<char,int> map4;
+	Map<char,int> map5(map4);	std::cout << "===Swap===" << std::endl;
 
 	map5['a'] = 1;
 	map5['b'] = 2;

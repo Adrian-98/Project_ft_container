@@ -11,40 +11,40 @@ if [ $# = 0 ] || [ $1 = "1" ] || [ $1 = "vector" ] || [[ $# = 1  &&  $1 = "san" 
 then
 
 	rm -f a.out ft.bin std.bin
-	c++ tester1.cpp $san -g3 -O0 -D FT -o ft.bin ; ./ft.bin > ft
-	c++ stdtester1.cpp $san -g3 -O0 -D STD -o std.bin; ./std.bin > std
+	c++ tester2.cpp $san -g3 -O0 -D FT -o ft.bin ; ./ft.bin > ft
+	c++ stdtester2.cpp $san -g3 -O0 -D STD -o std.bin; ./std.bin > std
 
-	# if [[ $2 = "ft" || $2 = "all" ]];then
-	# 	cat ft
-	# fi
-	# if [[ $2 = "std" || $2 = "all" ]];then
-	# 	cat std
-	# fi
+	if [[ $2 = "ft" || $2 = "all" ]];then
+		cat ft
+	fi
+	if [[ $2 = "std" || $2 = "all" ]];then
+		cat std
+	fi
 
 	echo "vvvvvvvv DIFF 01 Vector test 1 vvvvvvvv"
 	diff ft std
 
 fi
 
-if [ $# =  0 ] || [ $1 = "2" ] || [ $1 = "vector" ] || [[ $# = 1  &&  $1 = "san" ]]
+# if [ $# =  0 ] || [ $1 = "2" ] || [ $1 = "vector" ] || [[ $# = 1  &&  $1 = "san" ]]
 
-then
-	rm -f a.out ft.bin std.bin
-	c++ tester2.cpp -D DEK -D INT $san -g3 -O0 -D FT -o ft.bin ; ./ft.bin > ft
-	c++ stdtester2.cpp -D DEK -D INT $san -g3 -O0 -D STD -o std.bin; ./std.bin > std
+# then
+# 	rm -f a.out ft.bin std.bin
+# 	c++ tester2.cpp -D DEK -D INT $san -g3 -O0 -D FT -o ft.bin ; ./ft.bin > ft
+# 	c++ stdtester2.cpp -D DEK -D INT $san -g3 -O0 -D STD -o std.bin; ./std.bin > std
 
-	# if [[ $2 = "ft" || $2 = "all" ]];then
-	# 		cat ft
-	# fi
-	# if [[ $2 = "std" || $2 = "all" ]];then
-	# 	cat std
-	# fi
+# 	if [[ $2 = "ft" || $2 = "all" ]];then
+# 			cat ft
+# 	fi
+# 	if [[ $2 = "std" || $2 = "all" ]];then
+# 		cat std
+# 	fi
 
 
-	echo "vvvvvvvv DIFF 02 Vector test 2 vvvvvvvv"
-	#diff ft std
+# 	echo "vvvvvvvv DIFF 02 Vector test 2 vvvvvvvv"
+# 	diff ft std
 
-fi
+# fi
 
 # if [ $# = 0 ] || [ $1 = "3" ] || [ $1 = "vector" ] || [[ $# = 1  &&  $1 = "san" ]]
 
