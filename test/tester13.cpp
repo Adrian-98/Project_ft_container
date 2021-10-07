@@ -149,13 +149,13 @@ int main()
 	else
 		std::cout << (*it).first << " : " << (*it).second << std::endl;
 
-	it = map5.find(98);
+	it = map5.find('z');
 	if (it == map5.end())
 		std::cout << "Not found" << std::endl;
 	else
 		std::cout << (*it).first << " : " << (*it).second << std::endl;
 
-	it = map5.find(42);
+	it = map5.find('c');
 	if (it == map5.end())
 		std::cout << "Not found" << std::endl;
 	else
