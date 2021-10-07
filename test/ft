@@ -1,72 +1,21 @@
-| VECTOR TEST |
+| STACK TEST |
 
-ft::Vector<int> second(4, 100):
-100 100 100 100 
+size of first: 0
+size of second: 0
+size of third: 2
 
-ft::Vector<int> third(second.begin(), --second.end()):
-100 100 100 
+second empty?: empty
+third empty?: not empty
 
-ft::Vector<int> fourth(third):
-100 100 100 
+third.push(10)
+third.push(7)
 
-ft::Vector<int> fifth(5, 0); 
-fifth = third;
-100 100 100 
+third.top() is now 7
 
-ft::Vector<int> first; 
-first.insert(first.begin(), 1, 1);
-first.insert(first.end(), 1, 2);
-first.insert(first.end(), 1, 3);
-1 2 3 
+third.size() is now: 4
 
-first.insert(first.begin(), 2, 2);
-2 2 1 2 3 
+third.pop()
+third.pop()
+third.front() is now: 200
+third.size() is now: 2
 
-ft::Vector<int> anothervector(2, 400);
-first.insert(first.begin(), anothervector.begin(), anothervector.end());
-400 400 2 2 1 2 3 
-
-ft::Vector<int> vec(2, 2);
-vec.insert(vec.begin(), 2, 3);
-normal vector : 3 3 2 2 
-reverse: 2 2 3 3 
-
-first.size(): 7
-first.max_size(): 4611686018427387903
-
-first.resize(9, 6): 
-400 400 2 2 1 2 3 6 6 
-
-first.capacity(): 9
-
-first is empty?
-not empty
-
-first.reserve(10); 
-first.capacity(): 10
-
-first[1]: 400
-
-first.at(2): 2
-
-first.front(): 400
-
-first.back(): 6
-
-first.assign(10, 5):
-5 5 5 5 5 5 5 5 5 5 
-
-first.push_back(3):
-5 5 5 5 5 5 5 5 5 5 3 
-
-first.pop_back(3):
-5 5 5 5 5 5 5 5 5 5 
-
-first.insert(first.begin(), 2, 2):
-2 2 5 5 5 5 5 5 5 5 5 5 
-
-first.erase(first.begin()): 
-2 5 5 5 5 5 5 5 5 5 5 
-
-first.swap(second): 
-100 100 100 100 

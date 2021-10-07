@@ -86,7 +86,7 @@ int main()
 		it++;
 	}
 
-	std::cout << "___erase with it___" << std::endl;
+	std::cout << "___erase with it___(c)" << std::endl;
 	it = map5.find('c');
 	map5.erase(it);
 
@@ -100,7 +100,7 @@ int main()
 		it++;
 	}
 
-	std::cout << "___erase with key___" << std::endl;
+	std::cout << "___erase with key___(f)" << std::endl;
 	map5.erase('f');
 
 	std::cout << "size : " << map5.size() << std::endl;

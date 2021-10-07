@@ -7,38 +7,30 @@ then
 	san="-fsanitize=address"
 fi
 
+if [ $# = 0 ] || [ $1 = "1" ] || [ $1 = "stack" ] || [[ $# = 1  &&  $1 = "san" ]]
+then
+
+	echo "STACK TEST "
+	echo "-----------"
+	rm -f a.out ft.bin std.bin
+	
+	/usr/bin/time c++ stdtester1.cpp $san -g3 -O0 -D STD -o std.bin; ./std.bin > std
+	echo "-----------"
+	/usr/bin/time c++ tester1.cpp $san -g3 -O0 -D FT -o ft.bin ; ./ft.bin > ft
+fi
+
 if [ $# = 0 ] || [ $1 = "1" ] || [ $1 = "vector" ] || [[ $# = 1  &&  $1 = "san" ]]
 then
 
+	echo "VECTOR TEST "
+	echo "-----------"
 	rm -f a.out ft.bin std.bin
-	c++ tester2.cpp $san -g3 -O0 -D FT -o ft.bin ; ./ft.bin > ft
-	c++ stdtester2.cpp $san -g3 -O0 -D STD -o std.bin; ./std.bin > std
-
-	if [[ $2 = "ft" || $2 = "all" ]];then
-		cat ft
-	fi
-	if [[ $2 = "std" || $2 = "all" ]];then
-		cat std
-	fi
-
-	echo "vvvvvvvv DIFF 01 Vector test 1 vvvvvvvv"
-	diff ft std
-
+	
+	time c++ tester2.cpp $san -g3 -O0 -D FT -o ft.bin ; ./ft.bin > ft
+	echo "-----------"
+	time c++ stdtester2.cpp $san -g3 -O0 -D STD -o std.bin; ./std.bin > std
 fi
 
-# if [ $# =  0 ] || [ $1 = "2" ] || [ $1 = "vector" ] || [[ $# = 1  &&  $1 = "san" ]]
-
-# then
-# 	rm -f a.out ft.bin std.bin
-# 	c++ tester2.cpp -D DEK -D INT $san -g3 -O0 -D FT -o ft.bin ; ./ft.bin > ft
-# 	c++ stdtester2.cpp -D DEK -D INT $san -g3 -O0 -D STD -o std.bin; ./std.bin > std
-
-# 	if [[ $2 = "ft" || $2 = "all" ]];then
-# 			cat ft
-# 	fi
-# 	if [[ $2 = "std" || $2 = "all" ]];then
-# 		cat std
-# 	fi
 
 
 # 	echo "vvvvvvvv DIFF 02 Vector test 2 vvvvvvvv"
