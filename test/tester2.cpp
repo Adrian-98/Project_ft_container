@@ -136,11 +136,25 @@ int main()
     for (ft::Vector<int>::iterator it = first.begin(); it != first.end(); it++)
         std::cout << *it << " ";
     std::cout << "\n";
+    std::cout << "\nfirst.at(0) "<< first.at(0) << std::endl;
+    std::cout << "\nfirst.at(1) "<< first.at(1) << std::endl;
 
+
+    ft::Vector<int>::iterator it8 = first.begin();
+    std::cout << "\nvalor que apuna el iterador = " << *it8 << std::endl;
     std::cout << "\nfirst.swap(second): \n";
     first.swap(second);
     for (ft::Vector<int>::iterator it = first.begin(); it != first.end(); it++)
         std::cout << *it << " ";
     std::cout << "\n";
-
+    std::cout << "\nvalor que apuna el iterador despues del SWAP = " << *it8 << std::endl;
+    std::cout << "\nFirst.clear() " << std::endl;
+    first.clear();
+    for (ft::Vector<int>::iterator it = first.begin(); it != first.end(); it++)
+        std::cout << *it << " ";
+    std::cout << "\nIs first empty? " << std::endl;
+    if (first.empty() == false)
+        std::cout << "not empty\n";
+    else
+        std::cout << "empty\n";
 }
