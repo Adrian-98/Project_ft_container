@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Vector.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 11:20:37 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/10/04 19:46:46 by adrian           ###   ########.fr       */
+/*   Updated: 2021/10/08 15:51:58 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 
 namespace ft
 {
-    
-    template<typename T>
+    template <typename T, class Alloc = std::allocator<T> >
     class Vector
     {
         public:
+                typedef Alloc   _allocator_tpe;
                 typedef size_t size_type;
                 typedef T value_type;
                 typedef value_type& reference;
@@ -38,6 +38,7 @@ namespace ft
                 pointer _container;
                 size_type _size;
                 size_type _capacity;
+                _allocator_tpe _alloc;
                 
                 void copy_construct(size_type idx, const_reference val) {
                 new(&this->_container[idx]) value_type(val);

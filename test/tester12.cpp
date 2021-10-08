@@ -3,15 +3,13 @@
 #include <iostream>
 #include "../srcs/Map.hpp"
 
-using namespace ft;
-
 int main()
 {
-	Map<char,int> map1;
-	Map<char, int>::iterator it = map1.begin();
-	Map<char, int>::reverse_iterator ite = map1.rbegin();
-	Map<char,int> map4;
-	Map<char,int> map5(map4);
+	ft::Map<char,int> map1;
+	ft::Map<char, int>::iterator it = map1.begin();
+	ft::Map<char, int>::reverse_iterator ite = map1.rbegin();
+	ft::Map<char,int> map4;
+	ft::Map<char,int> map5(map4);
 
 	std::cout << "===MAX SIZE = " << map5.max_size() << " ===" << std::endl;
 
@@ -41,17 +39,17 @@ int main()
 
 	std::cout << "size : " << map5.size() << std::endl;
 
-	pair<const char, int> a('e', 42);
+	ft::pair<const char, int> a('e', 42);
 	map5.insert(a);
 
-	pair<const char, int> b('c', 41);
+	ft::pair<const char, int> b('c', 41);
 	map5.insert(b);
 
-	pair<const char, int> c('e', 40);
+	ft::pair<const char, int> c('e', 40);
 	map5.insert(c);
 
-	pair<const char, int> d('f', 451);
-	Map<char, int>::iterator  hint = map5.insert(c).first;
+	ft::pair<const char, int> d('f', 451);
+	ft::Map<char, int>::iterator  hint = map5.insert(c).first;
 	map5.insert(hint, d);
 
 	std::cout << "size : " << map5.size() << std::endl;
@@ -60,7 +58,7 @@ int main()
 	it = map5.begin();
 	while (it != map5.end())
 	{
-		pair<char, int> pr = *it;
+		ft::pair<char, int> pr = *it;
 		std::cout << pr.first << " | " << pr.second << std::endl;
 		it++;
 	}
@@ -69,7 +67,7 @@ int main()
 	ite = map5.rbegin();
 	while (ite != map5.rend())
 	{
-		pair<char, int> pr = *ite;
+		ft::pair<char, int> pr = *ite;
 		std::cout << pr.first << " | " << pr.second << std::endl;
 		ite++;
 	}
@@ -81,7 +79,7 @@ int main()
 	it = map5.begin();
 	while (it != map5.end())
 	{
-		pair<char, int> pr = *it;
+		ft::pair<char, int> pr = *it;
 		std::cout << pr.first << " | " << pr.second << std::endl;
 		it++;
 	}
@@ -95,7 +93,7 @@ int main()
 	it = map5.begin();
 	while (it != map5.end())
 	{
-		pair<char, int> pr = *it;
+		ft::pair<char, int> pr = *it;
 		std::cout << pr.first << " | " << pr.second << std::endl;
 		it++;
 	}
@@ -108,7 +106,7 @@ int main()
 	it = map5.begin();
 	while (it != map5.end())
 	{
-		pair<char, int> pr = *it;
+		ft::pair<char, int> pr = *it;
 		std::cout << pr.first << " | " << pr.second << std::endl;
 		it++;
 	}
@@ -121,7 +119,7 @@ int main()
 	it = map5.begin();
 	while (it != map5.end())
 	{
-		pair<char, int> pr = *it;
+		ft::pair<char, int> pr = *it;
 		std::cout << pr.first << " | " << pr.second << std::endl;
 		it++;
 	}

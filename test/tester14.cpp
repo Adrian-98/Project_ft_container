@@ -2,14 +2,12 @@
 #include "../srcs/Map.hpp"
 
 
-using namespace ft;
-
 int main()
 {
-	Map<char, int>	mmap;
+	ft::Map<char, int>	mmap;
 
 
-	Map<char, int>::iterator it = mmap.lower_bound('a');
+	ft::Map<char, int>::iterator it = mmap.lower_bound('a');
 
 	std::cout << "low(a) = ";
 	if (it == mmap.end())
@@ -217,9 +215,9 @@ int main()
 		std::cout << (*it).first << std::endl;
 
 
-	ft::pair<Map<char,int>::iterator,Map<char,int>::iterator> ret = mmap.equal_range('b');
-	Map<char, int>::iterator	itlow = mmap.lower_bound ('b');  // itlow points to b
-	Map<char, int>::iterator	itup = mmap.upper_bound ('d');   // itup points to e (not d!)
+	ft::pair<ft::Map<char,int>::iterator,ft::Map<char,int>::iterator> ret = mmap.equal_range('b');
+	ft::Map<char, int>::iterator	itlow = mmap.lower_bound ('b');  // itlow points to b
+	ft::Map<char, int>::iterator	itup = mmap.upper_bound ('d');   // itup points to e (not d!)
 
 	mmap['a']=20;
 	itup = mmap.upper_bound ('d');
@@ -247,7 +245,7 @@ int main()
 	mmap['a']=10;
   	mmap['b']=20;
   	mmap['c']=30;
-	for (Map<char,int>::iterator it = mmap.begin(); it != mmap.end(); ++it)
+	for (ft::Map<char,int>::iterator it = mmap.begin(); it != mmap.end(); ++it)
 		std::cout << (*it).first << " => " << (*it).second << '\n';
 
   ret = mmap.equal_range('b');

@@ -3,18 +3,16 @@
 #include <iostream>
 #include <stack>
 
-using namespace std;
-
 
 int main()
 {
 	std::cout << "| STACK TEST |\n\n";
 
-    vector<int> myvector (2,200);         // vector with 2 elements
+    std::vector<int> myvector (2,200);         // vector with 2 elements
 
-    stack<int> first;                 // empty Stack
-    stack<int,vector<int> > second; // empty Stack with vector as underlying container
-    stack<int,vector<int> > third (myvector);
+    std::stack<int> first;                 // empty Stack
+    std::stack<int,std::vector<int> > second; // empty Stack with vector as underlying container
+    std::stack<int,std::vector<int> > third (myvector);
 
     std::cout << "size of first: " << first.size() << '\n';
     std::cout << "size of second: " << second.size() << '\n';

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stdtester11.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 16:45:55 by adrian            #+#    #+#             */
-/*   Updated: 2021/10/07 16:46:18 by adrian           ###   ########.fr       */
+/*   Updated: 2021/10/08 15:55:23 by amunoz-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 #include <iostream>
 #include "../srcs/Map.hpp"
 
-using namespace std;
-
 int main()
 {
-    map<char,int> map1;
+    std::map<char,int> map1;
 
 	std::cout << "===Map===" << std::endl;
 	std::cout << "===Constructors===" << std::endl;
@@ -28,19 +26,19 @@ int main()
 	std::cout << "size : " << map1.size() << std::endl;
 	std::cout << "empty ? : " << map1.empty() << std::endl;
 	std::cout << "normal :" << std::endl;
-	map<char, int>::iterator it = map1.begin();
+	std::map<char, int>::iterator it = map1.begin();
 	while (it != map1.end())
 	{
-		pair<char, int> pr = *it;
+		std::pair<char, int> pr = *it;
 		std::cout << pr.first << " | " << pr.second << std::endl;
 		it++;
 	}
 	std::cout << "reverse :" << std::endl;
 
-	map<char, int>::reverse_iterator ite = map1.rbegin();
+	std::map<char, int>::reverse_iterator ite = map1.rbegin();
 	while (ite != map1.rend())
 	{
-		pair<char, int> pr = *ite;
+		std::pair<char, int> pr = *ite;
 		std::cout << pr.first << " | " << pr.second << std::endl;
 		ite++;
 	}
@@ -57,7 +55,7 @@ int main()
 	it = map1.begin();
 	while (it != map1.end())
 	{
-		pair<char, int> pr = *it;
+		std::pair<char, int> pr = *it;
 		std::cout << pr.first << " | " << pr.second << std::endl;
 		it++;
 	}
@@ -66,14 +64,14 @@ int main()
 	ite = map1.rbegin();
 	while (ite != map1.rend())
 	{
-		pair<char, int> pr = *ite;
+		std::pair<char, int> pr = *ite;
 		std::cout << pr.first << " | " << pr.second << std::endl;
 		ite++;
 	}
 
 	std::cout << "___range constructor___" << std::endl;
 
-	map<char,int> map2(map1.begin(), map1.begin());
+	std::map<char,int> map2(map1.begin(), map1.begin());
 
 	std::cout << "size : " << map2.size() << std::endl;
 	std::cout << "empty ? : " << map2.empty() << std::endl;
@@ -81,7 +79,7 @@ int main()
 	it = map2.begin();
 	while (it != map2.end())
 	{
-		pair<char, int> pr = *it;
+		std::pair<char, int> pr = *it;
 		std::cout << pr.first << " | " << pr.second << std::endl;
 		it++;
 	}
@@ -90,14 +88,14 @@ int main()
 	ite = map2.rbegin();
 	while (ite != map2.rend())
 	{
-		pair<char, int> pr = *ite;
+		std::pair<char, int> pr = *ite;
 		std::cout << pr.first << " | " << pr.second << std::endl;
 		ite++;
 	}
 
 	std::cout << "___copy constructor___" << std::endl;
 
-	map<char,int> map3(map1);
+	std::map<char,int> map3(map1);
 
 	std::cout << "size : " << map3.size() << std::endl;
 	std::cout << "empty ? : " << map3.empty() << std::endl;
@@ -105,7 +103,7 @@ int main()
 	it = map3.begin();
 	while (it != map3.end())
 	{
-		pair<char, int> pr = *it;
+		std::pair<char, int> pr = *it;
 		std::cout << pr.first << " | " << pr.second << std::endl;
 		it++;
 	}
@@ -114,7 +112,7 @@ int main()
 	ite = map3.rbegin();
 	while (ite != map3.rend())
 	{
-		pair<char, int> pr = *ite;
+		std::pair<char, int> pr = *ite;
 		std::cout << pr.first << " | " << pr.second << std::endl;
 		ite++;
 	}
@@ -122,8 +120,8 @@ int main()
 
 	std::cout << "___empty copy constructor___" << std::endl;
 
-	map<char,int> map4;
-	map<char,int> map5(map4);
+	std::map<char,int> map4;
+	std::map<char,int> map5(map4);
 
 	std::cout << "size : " << map5.size() << std::endl;
 	std::cout << "empty ? : " << map5.empty() << std::endl;
@@ -131,7 +129,7 @@ int main()
 	it = map5.begin();
 	while (it != map5.end())
 	{
-		pair<char, int> pr = *it;
+		std::pair<char, int> pr = *it;
 		std::cout << pr.first << " | " << pr.second << std::endl;
 		it++;
 	}
@@ -140,7 +138,7 @@ int main()
 	ite = map5.rbegin();
 	while (ite != map5.rend())
 	{
-		pair<char, int> pr = *ite;
+		std::pair<char, int> pr = *ite;
 		std::cout << pr.first << " | " << pr.second << std::endl;
 		ite++;
 	}
