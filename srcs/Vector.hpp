@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Vector.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 11:20:37 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/09/20 15:57:34 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/10/04 19:46:46 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ namespace ft
                 insert(begin(), n, val);
                 }
 
-                Vector(iterator first, iterator last):
+                template <class InputoIterator>
+                Vector(InputoIterator first, InputoIterator last):
                     _container(nullptr), _size(0), _capacity(0) {
                     insert(begin(), first, last);      
                 }

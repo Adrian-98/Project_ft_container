@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 17:59:21 by adrian            #+#    #+#             */
-/*   Updated: 2021/10/04 18:50:48 by adrian           ###   ########.fr       */
+/*   Updated: 2021/10/06 12:58:19 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@
 # include <limits>
 #include "Vector.hpp"
 #include "Pair.hpp"
+#include "Algorithm.hpp"
+#include "MapIterator.hpp"
+#include <memory>
+#include <cstddef>
+#include <limits.h>
+#include <stdexcept>
 
 
 template <typename T>
@@ -27,72 +33,81 @@ class Node
 			Node<T>	*right;
 			Node<T>	*left;
 			Node<T> *parent;
+			
 	public:
-			Node() : data(NULL), right(nullptr), left(nullptr), parent(NULL){}
-			Node(const T& data) : data(data), right(nullptr), left(nullptr), parent(NULL) {}
+			Node() : right(NULL), left(NULL), parent(NULL){}
+			Node(T data) : data(data), right(NULL), left(NULL), parent(NULL) {}
 			
 			Node(Node const &copy) : right(copy.right), left(copy.left), data(copy.data), parent(copy.parent){}
 			Node &operator=(Node const &copy)
 			{
+				this->data = copy.data;
 				this->right = copy.right;
 				this->left = copy.left;
-				this->data = copy.data;
 				this->parent = copy.parent;
 				return (*this);
 			}
 			
 			virtual ~Node(){}
 			
-			int height (Node *root)
+			int height (Node *node)
 			{
-				if (root == NULL)
-					return -1;
-					
-				int left = height (root->left); 
-				int right = height (root->right); 
-
-				return 1 + ft::max (left, right); 
+				if (node == NULL)
+					return 0;
+				int right = height(node->right);
+				int left = height(node->left);
+				if (left > right)
+					return left + 1;
+				return right + 1;
 			}
 
-			void checkbalance(Node<T> *node, Node<T> **root)
+			void checkBalance(Node<T> *node, Node<T> **root)
 			{
-				if (height(node->right) - height(node->left) > 1 || height(node->right) - height(node->left)  < -1)
+				if (height(node->left) - height(node->right) > 1 || height(node->left) - height(node->right) < -1) { 
 					balance(node, root);
-				if (this->parent == NULL)
+				}
+				if (node->parent == NULL) {
 					return;
-				checkbalance(this->parent, root);
+				}
+				checkBalance(node->parent, root);
 			}
 
 			void balance(Node<T> *node, Node<T> **root)
 			{
 				bool is_right;
-				Node<T> *tmparent = node->parent;
-				if (node->parent != NULL)
-					is_right = node->parent->right == node; //see which branch we are at;
-				if (height(node->right) - height(node->left) == 2){
-					if (height(node->right->right) - height(node->right->left) == 1)
+				Node<T> * tmparent = node->parent;
+				if (node->parent != NULL) {
+					is_right = node->parent->right == node;
+				}
+				if (height(node->right) - height(node->left) > 1) {
+					if (height(node->right->left) < height(node->right->right)) {
 						node = left_rotation(node);
-					else if (height(node->right->right) - height(node->right->left) == -1)
+					}
+					else {
 						node = right_left_rotation(node);
+					}
 				}
-				else {
-					if (height(node->right->right) - height(node->right->left) == 1)
-						node = left_right_rotation(node);
-					else if (height(node->right->right) - height(node->right->left) == -1)
+				else{
+					if (height(node->left->left) > height(node->left->right)) {
 						node = right_rotation(node);
+					}
+					else {
+						node = left_right_rotation(node);
+					}
 				}
-				if (tmparent == NULL)
+				if (tmparent == NULL) {
 					*root = node;
+				}
 				else {
 					if (is_right == true)
-						tmparent->right = node;
+						tmparent->right  = node;
 					else
 						tmparent->left = node;
-				}
+					}
 				node->parent = tmparent;				
 			}
 
-			Node<T> *left_rotate(Node<T> *node){
+			Node<T> *left_rotation(Node<T> *node){
 				Node<T> *tmp = node->right;
 				node->right = tmp->left;
 				tmp->left = node;
@@ -103,7 +118,7 @@ class Node
 				return tmp; 
 			}
 			
-			Node<T> *right_rotate(Node<T> *node){
+			Node<T> *right_rotation(Node<T> *node){
 				Node<T> *tmp = node->left;
 				node->left = tmp->right;
 				tmp->right = node;
@@ -114,14 +129,14 @@ class Node
 				return tmp; 
 			}
 			
-			Node<T> *right_left_rotate(Node<T> * node) {
-				node->right = right_rotate(node->right);
-				return left_rotate(node);
+			Node<T> *right_left_rotation(Node<T> * node) {
+				node->right = right_rotation(node->right);
+				return left_rotation(node);
 			}
 
-			Node<T> *left_right_rotate(Node<T> * node) {
-				node->left = left_rotate(node->left);
-				return right_rotate(node);
+			Node<T> *left_right_rotation(Node<T> * node) {
+				node->left = left_rotation(node->left);
+				return right_rotation(node);
 			}			
 };
 
