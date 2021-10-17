@@ -1,85 +1,38 @@
-| VECTOR TEST |
-
-std::vector<int> second(4, 100):
-100 100 100 100 
-
-std::vector<int> third(second.begin(), --second.end()):
-100 100 100 
-
-std::vector<int> fourth(third):
-100 100 100 
-
-std::vector<int> fifth(5, 0); 
-fifth = third;
-100 100 100 
-
-std::vector<int> first; 
-first.insert(first.begin(), 1, 1);
-first.insert(first.end(), 1, 2);
-first.insert(first.end(), 1, 3);
-1 2 3 
-
-first.insert(first.begin(), 2, 2);
-2 2 1 2 3 
-
-std::vector<int> anothervector(2, 400);
-first.insert(first.begin(), anothervector.begin(), anothervector.end());
-400 400 2 2 1 2 3 
-
-std::vector<int> vec(2, 2);
-vec.insert(vec.begin(), 2, 3);
-normal vector : 3 3 2 2 
-reverse: 2 2 3 3 
-
-first.size(): 7
-first.max_size(): 4611686018427387903
-
-first.resize(9, 6): 
-400 400 2 2 1 2 3 6 6 
-
-first.capacity(): 16
-
-first is empty?
-not empty
-
-first.reserve(10); 
-first.capacity(): 16
-
-first[1]: 400
-
-first.at(2): 2
-
-first.front(): 400
-
-first.back(): 6
-
-first.assign(10, 5):
-5 5 5 5 5 5 5 5 5 5 
-
-first.push_back(3):
-5 5 5 5 5 5 5 5 5 5 3 
-
-first.pop_back(3):
-5 5 5 5 5 5 5 5 5 5 
-
-first.insert(first.begin(), 2, 2):
-2 2 5 5 5 5 5 5 5 5 5 5 
-
-first.erase(first.begin()): 
-2 5 5 5 5 5 5 5 5 5 5 
-
-first.at(0) 2
-
-first.at(1) 5
-
-valor que apuna el iterador = 2
-
-first.swap(second): 
-100 100 100 100 
-
-valor que apuna el iterador despues del SWAP = 2
-
-First.clear() 
-
-Is first empty? 
-empty
+===MAX SIZE = 461168601842738790 ===
+===Acces Read===
+map1['a'] = 0
+map1['b'] = 0
+map1['c'] = 0
+===Acces Read/Write===
+size = 3
+size = 5
+map1['a'] = 0
+map1['b'] = 0
+map1['c'] = 46
+map1['g'] = 451
+map1['A'] = 421
+===Inserts===
+size : 0
+size : 3
+normal :
+c | 41
+e | 42
+f | 451
+reverse :
+f | 451
+e | 42
+c | 41
+===Erase===
+size : 3
+c | 41
+e | 42
+f | 451
+___erase with it___
+size : 2
+e | 42
+f | 451
+___erase with key___
+size : 1
+e | 42
+___erase everything with range___
+size : 0
