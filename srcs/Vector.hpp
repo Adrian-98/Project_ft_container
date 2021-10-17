@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Vector.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 11:20:37 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/10/08 15:51:58 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/10/17 12:12:51 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,7 +230,7 @@ namespace ft
                 
                 template <class InputIterator>
                 void insert (iterator position, InputIterator first, InputIterator last,
-                typename std::enable_if<!std::numeric_limits<InputIterator>::is_specialized>::type *_if = 0)
+                typename ft::enable_if<!std::numeric_limits<InputIterator>::is_specialized>::type *_if = 0)
                 {
                     iterator it = this->begin();
                     size_type index = 0;
