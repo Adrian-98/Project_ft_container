@@ -157,5 +157,5 @@ int main()
         std::cout << "not empty\n";
     else
         std::cout << "empty\n";
-    //system("leaks a.out");
+    system("leaks a.out");
 }

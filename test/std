@@ -1,0 +1,21 @@
+| STACK TEST |
+
+size of first: 0
+size of second: 0
+size of third: 2
+
+second empty?: empty
+third empty?: not empty
+
+third.push(10)
+third.push(7)
+
+third.top() is now 7
+
+third.size() is now: 4
+
+third.pop()
+third.pop()
+third.front() is now: 200
+third.size() is now: 2
+

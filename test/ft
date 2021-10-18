@@ -1,38 +1,21 @@
-===MAX SIZE = 461168601842738790 ===
-===Acces Read===
-map1['a'] = 0
-map1['b'] = 0
-map1['c'] = 0
-===Acces Read/Write===
-size = 3
-size = 5
-map1['a'] = 0
-map1['b'] = 0
-map1['c'] = 46
-map1['g'] = 451
-map1['A'] = 421
-===Inserts===
-size : 0
-size : 3
-normal :
-c | 41
-e | 42
-f | 451
-reverse :
-f | 451
-e | 42
-c | 41
-===Erase===
-size : 3
-c | 41
-e | 42
-f | 451
-___erase with it___
-size : 2
-e | 42
-f | 451
-___erase with key___
-size : 1
-e | 42
-___erase everything with range___
-size : 0
+| STACK TEST |
+
+size of first: 0
+size of second: 0
+size of third: 2
+
+second empty?: empty
+third empty?: not empty
+
+third.push(10)
+third.push(7)
+
+third.top() is now 7
+
+third.size() is now: 4
+
+third.pop()
+third.pop()
+third.front() is now: 200
+third.size() is now: 2
+
