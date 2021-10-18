@@ -9,11 +9,11 @@ int main()
 {
 	std::cout << "| STACK TEST |\n\n";
 
-    ft::Vector<int> myvector (2,200);         // vector with 2 elements
+    std::list<int> mylist;         // LIST
 
     ft::Stack<int> first;                 // empty Stack
-    ft::Stack<int,ft::Vector<int> > second; // empty Stack with vector as underlying container
-    ft::Stack<int,ft::Vector<int> > third (myvector);
+    ft::Stack<int,std::list<int> > second; // empty Stack with LIST as underlying container
+    ft::Stack<int,std::list<int> > third (mylist);
 
     std::cout << "size of first: " << first.size() << '\n';
     std::cout << "size of second: " << second.size() << '\n';

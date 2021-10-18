@@ -8,7 +8,7 @@ int main()
 {
 	ft::Map<char,int> map1;
 	ft::Map<char, int>::iterator it = map1.begin();
-	ft::Map<char, int>::reverse_iterator ite = map1.rbegin();
+	// ft::Map<char, int>::reverse_iterator ite = map1.rbegin();
 	ft::Map<char,int> map4;
 	ft::Map<char,int> map5(map4);	std::cout << "===Swap===" << std::endl;
 
@@ -159,4 +159,5 @@ int main()
 		std::cout << "Not found" << std::endl;
 	else
 		std::cout << (*it).first << " : " << (*it).second << std::endl;
+	//(system("leaks a.out");
 }

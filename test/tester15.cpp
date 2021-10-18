@@ -123,4 +123,5 @@ int main()
 		std::cout << pr.first << " | " << pr.second << std::endl;
 		it++;
 	}
+	//system("leaks a.out");
 }
