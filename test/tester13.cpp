@@ -158,5 +158,5 @@ int main()
 		std::cout << "Not found" << std::endl;
 	else
 		std::cout << (*it).first << " : " << (*it).second << std::endl;
-	system("leaks a.out");
+	//system("leaks a.out");
 }

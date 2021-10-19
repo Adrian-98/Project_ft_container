@@ -45,6 +45,6 @@ int main()
     std::cout << "third.front() is now: " << third.top() << '\n';
     std::cout << "third.size() is now: " << third.size() << std::endl;
     std::cout << "\n";
-    system("leaks a.out");
+    //system("leaks a.out");
 	return 0;
 }

@@ -131,6 +131,6 @@ int main()
 		std::cout << pr.first << " | " << pr.second << std::endl;
 		ite++;
 	}
-	system("leaks a.out");
+	//system("leaks a.out");
 
 }

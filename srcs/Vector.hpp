@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 11:20:37 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/10/19 13:14:26 by adrian           ###   ########.fr       */
+/*   Updated: 2021/10/19 13:16:59 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ namespace ft
                     _alloc.deallocate(_container, _capacity);
                 }
 
-                Vector &operator=(const vector &src)
+                Vector &operator=(const Vector &src)
                 {
                     if (this == &src)
                         return (*this);
