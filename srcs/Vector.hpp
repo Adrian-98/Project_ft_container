@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 11:20:37 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/10/19 12:47:15 by adrian           ###   ########.fr       */
+/*   Updated: 2021/10/19 13:14:26 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,29 @@ namespace ft
                         _alloc.destroy(_container + i);
                     _alloc.deallocate(_container, _capacity);
                 }
-            
+
+                Vector &operator=(const vector &src)
+                {
+                    if (this == &src)
+                        return (*this);
+                    for (size_type i = 0; i < _size; i++)
+                        _alloc.destroy(_container + i);
+                    _alloc.deallocate(_container, _capacity);
+                    if (src._size > _capacity)
+                    {
+                        _alloc.deallocate(_container, _capacity);
+                        _capacity = src._capacity;
+                        _container = _alloc.allocate(_capacity);
+                    }
+                    _size = src._size;
+                    if (src._capacity == 0)
+                        _capacity = src._capacity;
+                    _container = _alloc.allocate(src._capacity);
+                    for (size_type i = 0; i != src._size; i++)
+                        _alloc.construct(_container + i, src[i]);
+                    return (*this);
+                }
+
                 iterator begin() {
                 return iterator(this->_container);
                 }
@@ -301,8 +323,8 @@ namespace ft
                         alloc.destroy(&_container[i]);
                     for (size_t i = index + n; i < _size; i++)
                     {
-                        new (&_container[i - n]) value_type(_container[i]);
-                        alloc.destroy(&_container[i]);
+                        _alloc.construct(&_container[i - n], _container[i]);
+                        _alloc.destroy(&_container[i]);
                     }
                     _size -= n;
                     return first;
