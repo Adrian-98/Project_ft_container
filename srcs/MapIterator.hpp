@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 16:03:50 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/10/08 09:17:10 by adrian           ###   ########.fr       */
+/*   Updated: 2021/10/19 12:17:12 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ class MapIterator : public std::iterator<std::input_iterator_tag, Key, Value>
 		ft::pair<Key, Value> & operator*() {
 			return p->data;
 		}
+		ft::pair<Key, Value> *operator->() const { return &p->_data; };
 };
 
 template <typename Key, typename Value>
@@ -213,9 +214,9 @@ class MapReverseIterator : public std::iterator<std::input_iterator_tag, Key, Va
 		bool operator!=(const MapReverseIterator & rhs) const {
 			return p!=rhs.p;
 		}
-		ft::pair<Key, Value> & operator*() {
+		ft::pair<Key, Value> &operator*() {
 			return p->data;
 		}
-
+		ft::pair<Key, Value> *operator->() const { return &p->_data; };
 };
 #endif
