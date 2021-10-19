@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 17:42:14 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/10/07 18:41:59 by adrian           ###   ########.fr       */
+/*   Updated: 2021/10/19 12:30:48 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ namespace ft
 				
 				
 				explicit Map(const key_compare& comp = key_compare()){
+					(void)comp;
 					_tree_alloc = Tree_allocator();
 					_storage = _tree_alloc.allocate(1);
 					_tree_alloc.construct(_storage);
@@ -61,6 +62,8 @@ namespace ft
 
 				template <class InputIterator>
 				Map(InputIterator first, InputIterator last, const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type()){
+					(void)comp;
+					(void)alloc;
 					_tree_alloc = Tree_allocator();
 					_storage = _tree_alloc.allocate(1);
 					_tree_alloc.construct(_storage);
@@ -197,21 +200,23 @@ namespace ft
 					return Compare();
 				}
 
-				class value_compare
-				{   // in C++98, it is required to inherit binary_function<value_type,value_type,bool>
-					friend class Map;
+				 class value_compare
+				{
+					friend class map;
 					protected:
-						Compare comp;
-						value_compare (Compare c) : comp(c) {}  // constructed with Map's comparison object
+							Compare comp;
+							value_compare() {};
+							value_compare (Compare c) : comp(c) {};
 					public:
-						typedef bool result_type;
-						typedef value_type first_argument_type;
-						typedef value_type second_argument_type;
-						bool operator() (const value_type& x, const value_type& y) const
-						{
-							return comp(x.first, y.first);
-						}
+							typedef bool        result_type;
+							typedef value_type first_argument_type;
+							typedef value_type second_argument_type;
+							bool operator() (const value_type& x, const value_type& y) const
+							{
+									return comp(x.first, y.first);
+							}
 				};
+				value_compare   value_comp() const { return value_compare(); }
 
 				iterator lower_bound (const key_type& k) {
 					if (count(k))

@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 11:20:37 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/10/19 12:27:15 by adrian           ###   ########.fr       */
+/*   Updated: 2021/10/19 12:28:07 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,23 +155,23 @@ namespace ft
                     return (this->_size == 0);
                 }
 
-        void reserve(size_type n)
-        {
-            	if (n > _alloc.max_size())
-					throw std::length_error("n exceed max size!");
-				if (n > _capacity)
-				{
-					T *	new_vec = _alloc.allocate(n);
-					for (size_type i = 0; i != _size; i++)
-					{
-						_alloc.construct(new_vec + i, _container[i]);
-						_alloc.destroy(_container + i);
-					}
-					_alloc.deallocate(_container, _capacity);
-					_capacity = n;
-					_container = new_vec;
-				}
-		}
+                void reserve(size_type n)
+                {
+                        if (n > _alloc.max_size())
+                            throw std::length_error("n exceed max size!");
+                        if (n > _capacity)
+                        {
+                            T *	new_vec = _alloc.allocate(n);
+                            for (size_type i = 0; i != _size; i++)
+                            {
+                                _alloc.construct(new_vec + i, _container[i]);
+                                _alloc.destroy(_container + i);
+                            }
+                            _alloc.deallocate(_container, _capacity);
+                            _capacity = n;
+                            _container = new_vec;
+                        }
+                }
 
                 reference operator[](size_type n) {
                 return this->_container[n];

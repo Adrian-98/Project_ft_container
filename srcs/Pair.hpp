@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Pair.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amunoz-p <amunoz-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 17:51:21 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/09/28 13:34:26 by amunoz-p         ###   ########.fr       */
+/*   Updated: 2021/10/19 12:40:38 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,37 +28,33 @@
 
 namespace ft
 {
-	template <class T, class Y>
-	class pair
-	{
-		public:
-				T first;
-				Y second;
+  template <class T1, class T2>
+  struct pair {
+    typedef T1   first_type;
+    typedef T2   second_type;
 
-				pair() {
-					first = T();
-					second = Y();
-				}
+    pair() : first(), second() {};
+    pair (const first_type &a, const second_type &b) : first(a), second(b) {};
 
-				pair(const T & a, const Y & b) : first(a), second(b) {
-				}
+    template<class U, class V>
+    pair (const pair<U, V> &pr) : first(pr.first), second(pr.second) {};
 
-				pair(const pair & src) : first(src.first), second(src.second){
-				}
+    ~pair() {};
 
-				virtual	~pair() {}
+    pair<T1, T2>  &operator= (const pair<T1, T2> &pr) {
+      first = pr.first;
+      second = pr.second;
+      return *this;
+    };
 
-				pair &	operator=(const pair & rhs) {
-					first = rhs.first;
-					second = rhs.second;
-					return *this;
-				}
-		private:
-	};
+    first_type  first;
+    second_type second;
+  };
 
-template <class T1, class T2>
-  ft::pair<T1,T2> make_pair (T1 x, T2 y) {
+	template <class T1, class T2>
+  	ft::pair<T1,T2> make_pair (T1 x, T2 y) {
 	  return ft::pair<T1, T2>(x, y);
   }
-}
+};
+
 #endif

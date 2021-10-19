@@ -6,7 +6,7 @@
 
 int main ()
 {
-  std::map<char,int> mymap;
+  ft::Map<char,int> mymap;
 
   mymap['x']=1001;
   mymap['y']=2002;
@@ -14,12 +14,12 @@ int main ()
 
   std::cout << "mymap contains:\n";
 
-  std::pair<char,int> highest = *mymap.rbegin();          // last element
+  ft::pair<char,int> highest = *mymap.rbegin();          // last element
 
-  std::map<char,int>::iterator it = mymap.begin();
+  ft::Map<char,int>::iterator it = mymap.begin();
   do {
     std::cout << it->first << " => " << it->second << '\n';
-  } while ( mymap.value_comp()(*it++, highest) );
+  } while (mymap.value_comp()(*it++, highest) );
 
 //ANSWER MUST BE X=>1001, Y => 2002, Z => 3003 AS IN THE C++ EXAMPLE
 
