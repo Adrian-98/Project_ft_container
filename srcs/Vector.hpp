@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 11:20:37 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/10/17 12:39:26 by adrian           ###   ########.fr       */
+/*   Updated: 2021/10/19 12:27:15 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,32 +40,63 @@ namespace ft
                 size_type _capacity;
                 _allocator_tpe _alloc;
                 
-                void copy_construct(size_type idx, const_reference val) {
-                new(&this->_container[idx]) value_type(val);
-                }
-        public:
-                Vector(): _container(nullptr), _size(0), _capacity(0){}
                 
-                Vector(size_type n, const_reference val=value_type()):
-                _container(nullptr), _size(0), _capacity(0) {
-                insert(begin(), n, val);
+        public:
+                explicit vector(const allocator_type& alloc = allocator_type())
+                {
+                    _alloc = alloc;
+                    _container = _alloc.allocate(0);
+                    _size = 0;  //u_nullptr?
+                    _capacity = 0;
+                }
+                
+                //fill  - with n elemnts each a copy of value
+                explicit vector(size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type())
+                {
+                    _alloc = alloc;
+                    _container = _alloc.allocate(n);
+                    _size = n;
+                    _capacity = n;
+                    for (size_type i = 0; i < n; i++)
+                        _alloc.construct(_container + i, val);
                 }
 
-                template <class InputoIterator>
-                Vector(InputoIterator first, InputoIterator last):
-                    _container(nullptr), _size(0), _capacity(0) {
-                    insert(begin(), first, last);      
+                //range - as many elemnts as the range first-last
+                template <class InputIterator>
+                vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(),
+                typename std::enable_if<!std::is_same<InputIterator, int>::value>::type* = 0)
+                {
+                    size_type  n = 0;
+                    for (InputIterator tmp = first; tmp != last; tmp++)
+                        n++;
+                    _alloc = alloc;
+                    _size = n;
+                    _capacity = n;
+                    _container = _alloc.allocate(n);
+                    for (size_type i = 0; i != n; i++)
+                    {
+                        _alloc.construct(_container + i, *first);
+                        first++;
+                    }
                 }
 
-                Vector(const Vector& x):
-                    _container(nullptr), _size(0), _capacity(0) {
-                    this->_capacity = x._capacity;
-                    this->_size = x._size;
-                    this->_container = new T[_capacity + 1];
-                    for (size_t i = 0; i < this->_capacity; i++)
-                        this->_container[i] = x._container[i];
+                //copy - each elemnt in v
+                vector(const vector& x)
+                {
+                    _alloc = x._alloc;
+                    _capacity = x._capacity;
+                    _size = x._size;
+                    _container = _alloc.allocate(x._capacity);
+                    for (size_type i = 0; i < x._size; i++)
+                        _alloc.construct(_container + i, x[i]);
                 }
-
+                virtual ~vector() 
+                {
+                    for (size_type i = 0; i < _size; i++)
+                        _alloc.destroy(_container + i);
+                    _alloc.deallocate(_container, _capacity);
+                }
+            
                 iterator begin() {
                 return iterator(this->_container);
                 }
@@ -124,27 +155,23 @@ namespace ft
                     return (this->_size == 0);
                 }
 
-                void reserve(size_type n) {
-                    if (n > max_size())
-                        throw std::length_error("Vector::resize");
-                    if (_capacity == 0)
-                    {
-                        this->_container = new value_type[n];
-                        _capacity = n;
-                    }
-                    else if (n > _capacity)
-                    {
-                        pointer tmp = static_cast<pointer>(::operator new(sizeof(value_type) * n));
-                        if (this->_container)
-                        {
-                            for (size_t i = 0; i < this->_size; i++)
-                                new (&tmp[i]) value_type(this->_container[i]);
-                            delete(this->_container);
-                        }
-                        this->_capacity = n;
-                        this->_container = tmp;   
-                    }
-                }
+        void reserve(size_type n)
+        {
+            	if (n > _alloc.max_size())
+					throw std::length_error("n exceed max size!");
+				if (n > _capacity)
+				{
+					T *	new_vec = _alloc.allocate(n);
+					for (size_type i = 0; i != _size; i++)
+					{
+						_alloc.construct(new_vec + i, _container[i]);
+						_alloc.destroy(_container + i);
+					}
+					_alloc.deallocate(_container, _capacity);
+					_capacity = n;
+					_container = new_vec;
+				}
+		}
 
                 reference operator[](size_type n) {
                 return this->_container[n];
@@ -229,7 +256,8 @@ namespace ft
                 }
                 
                 template <class InputIterator>
-                void insert (iterator position, InputIterator first, InputIterator last)
+                void insert (iterator position, InputIterator first, InputIterator last,
+                typename ft::enable_if<!std::numeric_limits<InputIterator>::is_specialized>::type * = 0)
                 {
                     iterator it = this->begin();
                     size_type index = 0;
@@ -244,14 +272,13 @@ namespace ft
                     }
                     if (!n)
                         return ;
-                    std::allocator<T> _alloc;
                     for (ptrdiff_t i = _size - 1; i >= (ptrdiff_t)index;  i--)
                     {
-                        _alloc.construct(&_container[i + n], _container[i]);
-                        _alloc.destroy(&_container[i]);
+                        _alloc.construct(&_val[i + n], _val[i]);
+                        _alloc.destroy(&_val[i]);
                     }
                     for (iterator it2 = first; it2 != last; it2++)
-                            _alloc.construct(&_container[index++], *it2);
+                            _alloc.construct(&_val[index++], *it2);
                     _size = _size + n;
                 }
 
