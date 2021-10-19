@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 16:03:50 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/10/19 12:17:12 by adrian           ###   ########.fr       */
+/*   Updated: 2021/10/19 12:48:00 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ class MapIterator : public std::iterator<std::input_iterator_tag, Key, Value>
 		ft::pair<Key, Value> & operator*() {
 			return p->data;
 		}
-		ft::pair<Key, Value> *operator->() const { return &p->_data; };
+		ft::pair<Key, Value> *operator->() const { return &p->data; };
 };
 
 template <typename Key, typename Value>

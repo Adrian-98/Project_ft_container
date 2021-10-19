@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 17:42:14 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/10/19 12:30:48 by adrian           ###   ########.fr       */
+/*   Updated: 2021/10/19 12:49:16 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,9 +205,10 @@ namespace ft
 					friend class map;
 					protected:
 							Compare comp;
-							value_compare() {};
+							
 							value_compare (Compare c) : comp(c) {};
 					public:
+							value_compare() {};
 							typedef bool        result_type;
 							typedef value_type first_argument_type;
 							typedef value_type second_argument_type;

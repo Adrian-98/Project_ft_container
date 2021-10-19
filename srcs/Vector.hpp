@@ -6,7 +6,7 @@
 /*   By: adrian <adrian@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 11:20:37 by amunoz-p          #+#    #+#             */
-/*   Updated: 2021/10/19 12:28:07 by adrian           ###   ########.fr       */
+/*   Updated: 2021/10/19 12:47:15 by adrian           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ namespace ft
     class Vector
     {
         public:
-                typedef Alloc   _allocator_tpe;
+                typedef Alloc   _allocator_type;
                 typedef size_t size_type;
                 typedef T value_type;
                 typedef value_type& reference;
@@ -38,11 +38,11 @@ namespace ft
                 pointer _container;
                 size_type _size;
                 size_type _capacity;
-                _allocator_tpe _alloc;
+                _allocator_type _alloc;
                 
                 
         public:
-                explicit vector(const allocator_type& alloc = allocator_type())
+                explicit Vector(const _allocator_type& alloc = _allocator_type())
                 {
                     _alloc = alloc;
                     _container = _alloc.allocate(0);
@@ -51,7 +51,7 @@ namespace ft
                 }
                 
                 //fill  - with n elemnts each a copy of value
-                explicit vector(size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type())
+                explicit Vector(size_type n, const value_type& val = value_type(), const _allocator_type& alloc = _allocator_type())
                 {
                     _alloc = alloc;
                     _container = _alloc.allocate(n);
@@ -63,7 +63,7 @@ namespace ft
 
                 //range - as many elemnts as the range first-last
                 template <class InputIterator>
-                vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type(),
+                Vector(InputIterator first, InputIterator last, const _allocator_type& alloc = _allocator_type(),
                 typename std::enable_if<!std::is_same<InputIterator, int>::value>::type* = 0)
                 {
                     size_type  n = 0;
@@ -81,7 +81,7 @@ namespace ft
                 }
 
                 //copy - each elemnt in v
-                vector(const vector& x)
+                Vector(const Vector& x)
                 {
                     _alloc = x._alloc;
                     _capacity = x._capacity;
@@ -90,7 +90,7 @@ namespace ft
                     for (size_type i = 0; i < x._size; i++)
                         _alloc.construct(_container + i, x[i]);
                 }
-                virtual ~vector() 
+                virtual ~Vector() 
                 {
                     for (size_type i = 0; i < _size; i++)
                         _alloc.destroy(_container + i);
@@ -274,11 +274,11 @@ namespace ft
                         return ;
                     for (ptrdiff_t i = _size - 1; i >= (ptrdiff_t)index;  i--)
                     {
-                        _alloc.construct(&_val[i + n], _val[i]);
-                        _alloc.destroy(&_val[i]);
+                        _alloc.construct(&_container[i + n], _container[i]);
+                        _alloc.destroy(&_container[i]);
                     }
                     for (iterator it2 = first; it2 != last; it2++)
-                            _alloc.construct(&_val[index++], *it2);
+                            _alloc.construct(&_container[index++], *it2);
                     _size = _size + n;
                 }
 

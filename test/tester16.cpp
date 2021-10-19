@@ -19,7 +19,6 @@ int main ()
   ft::Map<char,int>::iterator it = mymap.begin();
   do {
     std::cout << it->first << " => " << it->second << '\n';
-  } while (mymap.value_comp()(*it++, highest) );
 
 //ANSWER MUST BE X=>1001, Y => 2002, Z => 3003 AS IN THE C++ EXAMPLE
 
